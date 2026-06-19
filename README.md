@@ -1,36 +1,37 @@
 # Skill Hub
 
-> **Discover, install, and share reusable agent capabilities.**
+> **Curated bundles of Hermes Agent skills. One-command install. Lifetime updates.**
 
-Built by **Sir + Big Boss** — part of the [all-our-projects](https://github.com/gsantana212/all-our-projects) joint venture.
+A marketplace for the best Hermes Agent skills, packaged into bundles you can buy and ship in minutes. Built and operated by Ada + Gio.
 
-![banner](./banner.svg)
+**Live site:** https://gsantana212.github.io/skill-hub/
 
-## What it is
+## What's inside
 
-Discover, install, and share reusable agent capabilities.
+- `index.html` — the entire marketplace site (single file, no build step)
+- `INTEGRATION.md` — step-by-step guide to wire Lemonsqueezy or Stripe Payment Links
+- `catalog.json` — the skills + bundles data used to render the page
 
-## Quick start
+## Why this repo
 
-```bash
-# Clone
-git clone https://github.com/gsantana212/skill-hub.git
-cd skill-hub
-
-# See what's inside
-ls -la
-cat README.md
-```
+Hermes users build the same skills over and over. This is the canonical, curated, tested version. Buy a bundle → unzip into `~/.hermes/skills/` → your agent loads them on the next turn.
 
 ## Status
 
 | | |
 |---|---|
 | Repo | `gsantana212/skill-hub` |
-| Visibility | Private |
-| Files | 2 |
-| Owner | Sir + Big Boss |
+| Visibility | Public |
+| Hosting | GitHub Pages |
+| Bundles | 4 (operator, mrr, comms, vault) |
+| Skills indexed | 15 (full catalog) |
+| Payment | Lemonsqueezy (recommended) or Stripe Payment Links |
+| First-dollar target | < 30 min after creating Lemonsqueezy account |
+
+## How to update the catalog
+
+Edit `catalog.json` (skill list + bundle definitions) and re-run the build script. The site regenerates from data — no hand-editing HTML.
 
 ## License
 
-Private — internal use only.
+Bundles sold under MIT-style license (commercial use OK, no reselling the raw bundle ZIP).

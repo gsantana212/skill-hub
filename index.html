@@ -16,13 +16,498 @@
 <meta property="og:image" content="/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237c5cff'/%3E%3Cpath d='M9 22V10h6.5a4 4 0 0 1 1.5 7.6L20 22h-3.4l-2.7-4H12v4H9zm3-6.6h3.3a1.7 1.7 0 0 0 0-3.4H12v3.4z' fill='white'/%3E%3C/svg%3E">
 <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+:root{
+  --bg:#fafaf9;--bg-elev:#ffffff;--bg-card:#ffffff;--bg-soft:#f4f4f5;
+  --border:rgba(0,0,0,.08);--border-strong:rgba(0,0,0,.14);
+  --text:#18181b;--text-dim:#52525b;--text-mute:#71717a;
+  --brand:#7c5cff;--brand-2:#5b8cff;--brand-soft:rgba(124,92,255,.12);
+  --accent:#16a37a;--warn:#ffb454;--danger:#ff6b6b;--code-bg:#f4f4f5;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px -8px rgba(0,0,0,.08);
+  --shadow-lg:0 24px 48px -16px rgba(0,0,0,.18);
+  --radius:14px;--radius-sm:8px;--max:1180px;
+  --font:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,Monaco,monospace;
+}
+[data-theme="dark"]{
+  --bg:#0a0a0b;--bg-elev:#111114;--bg-card:#15151a;--bg-soft:#0e0e12;
+  --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.14);
+  --text:#ededee;--text-dim:#9b9ba3;--text-mute:#6b6b75;
+  --brand-soft:rgba(124,92,255,.18);--code-bg:#0e0e12;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -8px rgba(0,0,0,.5);
+  --shadow-lg:0 24px 48px -16px rgba(0,0,0,.5);
+}
+html{background:var(--bg);color-scheme:light dark}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.55;font-size:15px;letter-spacing:-.005em}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+img,svg{display:block;max-width:100%}
+code,pre,.mono{font-family:var(--mono);font-size:.92em}
+::selection{background:var(--brand);color:#fff}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.row{display:flex;align-items:center}
+section{padding:72px 0;border-top:1px solid var(--border)}
+section h2{font-size:32px;font-weight:700;letter-spacing:-.02em;text-align:center;margin:0 0 12px}
+section .lede{text-align:center;color:var(--text-dim);font-size:16px;max-width:680px;margin:0 auto 36px}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
+.brand-mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-2) 100%);display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px;box-shadow:0 4px 14px -2px var(--brand-soft)}
+.brand-name{font-size:15px}
+.brand-name b{font-weight:600}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{padding:8px 12px;border-radius:8px;color:var(--text-dim);font-size:14px;transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--text);background:var(--brand-soft)}
+.nav-cta{display:flex;align-items:center;gap:8px}
+@media(max-width:760px){.nav-links{display:none}}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:9px;font-size:14px;font-weight:500;border:1px solid var(--border-strong);background:var(--bg-elev);color:var(--text);transition:transform .08s,background .15s,border-color .15s,box-shadow .15s}
+.btn:hover{background:var(--bg-soft);border-color:var(--brand)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--brand);color:#fff;border-color:transparent;box-shadow:0 4px 14px -2px var(--brand-soft)}
+.btn-primary:hover{background:#6d4ce8;color:#fff;border-color:transparent;box-shadow:0 8px 22px -4px var(--brand-soft)}
+.btn-lg{padding:14px 22px;font-size:15px;border-radius:11px}
+.btn-ghost{background:transparent;border-color:var(--border)}
+.hero{position:relative;padding:96px 0 72px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-10% -10% auto -10%;height:60%;background:radial-gradient(800px 300px at 30% 0%,var(--brand-soft),transparent 60%),radial-gradient(600px 260px at 80% 10%,rgba(91,140,255,.10),transparent 65%);pointer-events:none}
+.hero .wrap{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-size:12.5px;font-weight:500;border:1px solid color-mix(in srgb,var(--brand) 25%,transparent)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}
+.hero h1{font-size:64px;font-weight:700;line-height:1.05;letter-spacing:-.035em;margin:18px 0 16px;max-width:18ch}
+.hero h1 .accent{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lede{font-size:18px;color:var(--text-dim);max-width:56ch;margin:0}
+.hero-cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-trust{margin-top:32px;display:flex;gap:24px;flex-wrap:wrap;color:var(--text-mute);font-size:13px}
+.hero-trust span{display:inline-flex;align-items:center;gap:6px}
+.hero-trust .check{color:var(--accent);font-weight:700}
+.term{margin-top:48px;border-radius:14px;border:1px solid var(--border-strong);background:var(--bg-elev);box-shadow:var(--shadow-lg);overflow:hidden}
+.term-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg-soft);font-size:12px;color:var(--text-mute)}
+.term-bar .dot{width:10px;height:10px;border-radius:50%;background:var(--border-strong)}
+.term-bar .dot:nth-child(1){background:#ff5f57}
+.term-bar .dot:nth-child(2){background:#febc2e}
+.term-bar .dot:nth-child(3){background:#28c840}
+.term-bar .title{margin-left:8px;font-family:var(--mono)}
+.term-body{padding:18px 20px;font-family:var(--mono);font-size:13.5px;line-height:1.7;overflow-x:auto}
+.term-body .c{color:var(--text-mute)}
+.term-body .k{color:var(--brand)}
+.term-body .ok{color:var(--accent)}
+.term-body .hi{color:var(--text)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:48px 0 0}
+.stat{padding:24px 16px;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:0}
+.stat .num{font-size:36px;font-weight:700;letter-spacing:-.02em;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{font-size:11.5px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--border)}}
+.bundles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:8px}
+@media(max-width:1080px){.bundles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.bundles{grid-template-columns:1fr}}
+.bundle{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:14px;transition:transform .15s,box-shadow .15s,border-color .15s}
+.bundle:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--border-strong)}
+.bundle-head{display:flex;flex-direction:column;gap:6px}
+.bundle-tag{display:inline-block;font-size:10.5px;letter-spacing:.12em;color:var(--brand);font-weight:600;padding:3px 8px;background:var(--brand-soft);border-radius:4px;width:fit-content;text-transform:uppercase}
+.bundle-name{font-size:18px;font-weight:700;letter-spacing:-.01em;margin:0}
+.bundle-tagline{font-size:13.5px;color:var(--text-dim);margin:0;min-height:38px}
+.bundle-price{display:flex;align-items:baseline;gap:6px}
+.bundle-price .amount{font-size:36px;font-weight:700;letter-spacing:-.02em}
+.bundle-price .period{font-size:13px;color:var(--text-mute)}
+.bundle-features{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;font-size:13.5px}
+.bundle-features li{color:var(--text-dim);display:flex;align-items:flex-start;gap:6px}
+.bundle-features li::before{content:"✓";color:var(--accent);font-weight:700;flex-shrink:0}
+.bundle-meta{font-size:12px;color:var(--text-mute);padding-top:6px;border-top:1px dashed var(--border)}
+.bundle-cta{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.bundle-cta .buy-btn{justify-content:center;width:100%}
+.bundle-skills{font-size:12.5px;color:var(--text-mute)}
+.bundle-skills summary{cursor:pointer;color:var(--text-dim);padding:4px 0}
+.bundle-skills summary:hover{color:var(--text)}
+.bundle-skills ul{margin:8px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}
+.bundle-skills li code{background:var(--bg-soft);padding:2px 6px;border-radius:4px;font-size:11.5px}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+@media(max-width:900px){.skills{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.skills{grid-template-columns:1fr}}
+.skill{display:block;padding:16px;border:1px solid var(--border);border-radius:12px;background:var(--bg-card);transition:border-color .15s,transform .15s}
+.skill:hover{border-color:var(--border-strong);transform:translateY(-1px)}
+.skill-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.skill-icon{width:28px;height:28px;border-radius:7px;background:var(--brand-soft);display:grid;place-items:center;font-size:14px;color:var(--brand);flex-shrink:0}
+.skill-name{font-size:14.5px;font-weight:600;font-family:var(--mono);letter-spacing:-.01em}
+.skill-cat{margin-left:auto;font-size:10.5px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.06em}
+.skill-desc{color:var(--text-dim);font-size:13px;line-height:1.5;margin:2px 0 10px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
+.skill-tags .tag{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--bg-soft);color:var(--text-mute);border:1px solid var(--border)}
+.pay-table{width:100%;border-collapse:collapse;margin-top:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.pay-table th,.pay-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:14px}
+.pay-table tr:last-child td{border-bottom:0}
+.pay-table th{background:var(--bg-soft);font-weight:600;color:var(--text-dim);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.pay-table td:first-child{font-weight:600}
+.pay-table .pick{background:linear-gradient(90deg,var(--brand-soft) 0%,transparent 100%);position:relative}
+.pay-table .pick::after{content:"PICK";position:absolute;top:8px;right:12px;font-size:9.5px;font-weight:700;color:var(--brand);background:#fff;padding:2px 6px;border-radius:4px;letter-spacing:.08em}
+[data-theme="dark"] .pay-table .pick::after{background:#000;color:#fff}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+@media(max-width:760px){.faq{grid-template-columns:1fr}}
+.faq details{padding:18px 20px;border:1px solid var(--border);border-radius:12px;background:var(--bg-card)}
+.faq details[open]{border-color:var(--border-strong)}
+.faq summary{cursor:pointer;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.faq summary:hover{color:var(--brand)}
+.faq p{color:var(--text-dim);font-size:14px;margin:10px 0 0}
+.wform{margin:24px auto 0;max-width:520px;display:flex;gap:8px;padding:8px;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:12px;box-shadow:var(--shadow)}
+.wform input{flex:1;border:0;outline:0;background:transparent;padding:10px 12px;font:inherit;color:var(--text)}
+.wform button{white-space:nowrap}
+.wform .hint{display:block;text-align:center;margin-top:10px;font-size:12.5px;color:var(--text-mute)}
+footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-mute);font-size:13px}
+.foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap}
+.foot-links a:hover{color:var(--text)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--bg);padding:12px 18px;border-radius:10px;font-size:13.5px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:100;box-shadow:var(--shadow-lg);max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast .em{font-family:var(--mono);background:rgba(255,255,255,.15);padding:2px 6px;border-radius:4px;font-size:12px}
+.toast code{font-size:11.5px;background:rgba(255,255,255,.15);padding:2px 6px;border-radius:4px}
+@media(max-width:680px){.hero{padding:64px 0 48px}.hero h1{font-size:42px}}
+</style>
 </head>
 <body>
-<p>redirecting — please wait…</p>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark">S</span>
+      <span class="brand-name">Skill <b>Hub</b></span>
+    </a>
+    <div class="nav-links">
+      <a href="#bundles">Bundles</a>
+      <a href="#skills">Skills</a>
+      <a href="#payments">Payments</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/gsantana212/skill-hub" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-ghost" id="theme-toggle" aria-label="Toggle theme">◐</button>
+      <a class="btn btn-primary" href="#bundles">Buy a bundle →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> Now indexing 15 skills · 5 categories</span>
+    <h1>The marketplace for <span class="accent">Hermes Agent</span> skills.</h1>
+    <p class="lede">Curated, versioned, installable in one command. Buy a bundle, drop it into <code>~/.hermes/skills/</code>, and your agent picks it up automatically.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary btn-lg" href="#bundles">Browse bundles →</a>
+      <a class="btn btn-lg" href="#skills">See all skills</a>
+    </div>
+    <div class="hero-trust">
+      <span><span class="check">✓</span> One-command install</span>
+      <span><span class="check">✓</span> Lifetime free updates</span>
+      <span><span class="check">✓</span> MIT-style license</span>
+      <span><span class="check">✓</span> 14-day refund</span>
+    </div>
+
+    <div class="term">
+      <div class="term-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="title">~/projects/agent · zsh</span>
+      </div>
+      <div class="term-body">
+<span class="c"># install a bundle — drop the .zip into ~/.hermes/skills/</span>
+<span class="k">$</span> unzip skillhub-operator-pack.zip -d ~/.hermes/skills/
+<span class="ok">  ✓ 5 skills installed · v1.0.0 · 0 advisories</span>
+
+<span class="c"># list every skill your agent can now load</span>
+<span class="k">$</span> hermes skills list
+<span class="hi">  agent-sudo-wrapper</span>    <span class="c">runtime-safe root escalation</span>
+<span class="hi">  ada-replication</span>        <span class="c">replicate the master agent to a new box</span>
+<span class="hi">  dorabox-bringup</span>        <span class="c">Kubuntu + AMD GPU provisioning SOP</span>
+<span class="hi">  max-restore</span>            <span class="c">rehydrate maxbox planner from scratch</span>
+<span class="hi">  mesh-bridge-sync</span>        <span class="c">cross-box bridge.db sync</span>
+
+<span class="c"># your agent loads them on the next turn — zero config</span>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">15</div><div class="lbl">Curated skills</div></div>
+      <div class="stat"><div class="num">5</div><div class="lbl">Categories</div></div>
+      <div class="stat"><div class="num">4</div><div class="lbl">Bundle tiers</div></div>
+      <div class="stat"><div class="num">∞</div><div class="lbl">Updates</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="bundles">
+  <div class="wrap">
+    <h2>Pick a bundle. Ship today.</h2>
+    <p class="lede">Every bundle is a curated set of Hermes skills that work together. One price, one download, lifetime updates.</p>
+    <div class="bundles">
+<article class="bundle" id="bundle-operator">
+  <header class="bundle-head">
+    <span class="bundle-tag">BUNDLE</span>
+    <h3 class="bundle-name">Agent Operator Starter Pack</h3>
+    <p class="bundle-tagline">Spin up new agent boxes. Bootstrap. Replicate. Sync.</p>
+  </header>
+  <div class="bundle-price"><span class="amount">$19</span><span class="period">one-time</span></div>
+  <ul class="bundle-features"><li>Root escalation wrapper</li><li>Full-state replication</li><li>Box bring-up SOP</li><li>Cross-mesh sync</li></ul>
+  <div class="bundle-meta">5 skills · Lifetime updates · MIT-style license</div>
+  <div class="bundle-cta">
+    <button class="btn btn-primary buy-btn" data-bundle="operator" data-sku="hermes-operator" data-price="19" data-url="https://YOUR-LEMONSQUEEZY-STORE.lemonsqueezy.com/buy/hermes-operator">Buy $19 <span aria-hidden="true">→</span></button>
+    <details class="bundle-skills"><summary>See 5 skills included</summary>
+      <ul><li><code>agent-sudo-wrapper</code></li><li><code>ada-replication</code></li><li><code>dorabox-bringup</code></li><li><code>max-restore</code></li><li><code>mesh-bridge-sync</code></li></ul>
+    </details></div>
+</article>
+<article class="bundle" id="bundle-mrr">
+  <header class="bundle-head">
+    <span class="bundle-tag">BUNDLE</span>
+    <h3 class="bundle-name">MRR &amp; Income Toolkit</h3>
+    <p class="bundle-tagline">Ship paid projects. Iterate. Self-improve. Make MRR.</p>
+  </header>
+  <div class="bundle-price"><span class="amount">$29</span><span class="period">one-time</span></div>
+  <ul class="bundle-features"><li>3-question niche framework</li><li>90s cadence rules</li><li>Self-improvement loop</li><li>Fine-tune on consumer GPU</li></ul>
+  <div class="bundle-meta">4 skills · Lifetime updates · MIT-style license</div>
+  <div class="bundle-cta">
+    <button class="btn btn-primary buy-btn" data-bundle="mrr" data-sku="hermes-mrr" data-price="29" data-url="https://YOUR-LEMONSQUEEZY-STORE.lemonsqueezy.com/buy/hermes-mrr">Buy $29 <span aria-hidden="true">→</span></button>
+    <details class="bundle-skills"><summary>See 4 skills included</summary>
+      <ul><li><code>mrr-project-shaping</code></li><li><code>self-improving-agent</code></li><li><code>tandem-work</code></li><li><code>personalized-llm-finetune</code></li></ul>
+    </details></div>
+</article>
+<article class="bundle" id="bundle-comms">
+  <header class="bundle-head">
+    <span class="bundle-tag">BUNDLE</span>
+    <h3 class="bundle-name">Comms &amp; Debugging Pro</h3>
+    <p class="bundle-tagline">Multi-channel messaging. Persona rename. Telegram fix.</p>
+  </header>
+  <div class="bundle-price"><span class="amount">$15</span><span class="period">one-time</span></div>
+  <ul class="bundle-features"><li>Telegram/Discord/Matrix</li><li>Telegram delivery fix</li><li>Persona identity rename</li></ul>
+  <div class="bundle-meta">3 skills · Lifetime updates · MIT-style license</div>
+  <div class="bundle-cta">
+    <button class="btn btn-primary buy-btn" data-bundle="comms" data-sku="hermes-comms" data-price="15" data-url="https://YOUR-LEMONSQUEEZY-STORE.lemonsqueezy.com/buy/hermes-comms">Buy $15 <span aria-hidden="true">→</span></button>
+    <details class="bundle-skills"><summary>See 3 skills included</summary>
+      <ul><li><code>multi-channel-comms</code></li><li><code>telegram-delivery-debugging</code></li><li><code>persona-rename-across-system</code></li></ul>
+    </details></div>
+</article>
+<article class="bundle" id="bundle-vault">
+  <header class="bundle-head">
+    <span class="bundle-tag">BUNDLE</span>
+    <h3 class="bundle-name">The Full Vault</h3>
+    <p class="bundle-tagline">Every curated Hermes skill. All 30+ skills. One price.</p>
+  </header>
+  <div class="bundle-price"><span class="amount">$49</span><span class="period">one-time</span></div>
+  <ul class="bundle-features"><li>All current skills</li><li>Free updates for life</li><li>Priority support</li><li>Source-available license</li></ul>
+  <div class="bundle-meta">15 skills · Lifetime updates · MIT-style license</div>
+  <div class="bundle-cta">
+    <button class="btn btn-primary buy-btn" data-bundle="vault" data-sku="hermes-vault" data-price="49" data-url="https://YOUR-LEMONSQUEEZY-STORE.lemonsqueezy.com/buy/hermes-vault">Buy $49 <span aria-hidden="true">→</span></button>
+    <details class="bundle-skills"><summary>See 15 skills included</summary>
+      <ul><li><code>ada-replication</code></li><li><code>agent-sudo-wrapper</code></li><li><code>dogfood</code></li><li><code>dorabox-bringup</code></li><li><code>gdrive-backup-rclone</code></li><li><code>max-restore</code></li><li><code>mesh-bridge-sync</code></li><li><code>mrr-project-shaping</code></li><li><code>multi-channel-comms</code></li><li><code>persona-rename-across-system</code></li><li><code>personalized-llm-finetune</code></li><li><code>self-improving-agent</code></li><li><code>tandem-work</code></li><li><code>telegram-delivery-debugging</code></li><li><code>yuanbao</code></li></ul>
+    </details></div>
+</article>
+    </div>
+    <p style="text-align:center;color:var(--text-mute);font-size:13px;margin-top:24px">
+      Payments processed via <b>Lemonsqueezy</b> (Merchant of Record) · Major cards · Apple/Google Pay · Bank transfers in 30+ countries.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Every skill in the catalog</h2>
+    <p class="lede">Same skills you'd build yourself — production-tested on Ada, Max, dora, and OpenCode across the mesh.</p>
+    <div class="skills">
+<a class="skill" data-cat="setup" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">ada-replication</span><span class="skill-cat">Setup</span></div>
+  <div class="skill-desc">Replicate Ada (the master Hermes agent) onto a remote box so it can serve as a fully-loaded peer agent. Covers full state, persona, memory, skills, scripts.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="setup" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">agent-sudo-wrapper</span><span class="skill-cat">Setup</span></div>
+  <div class="skill-desc">When a hermes-runtime agent needs to run sudo non-interactively but the runtime blocks sudo -S from external stdin pipes as a brute-force attack vector.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="ai" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">🧠</span><span class="skill-name">dogfood</span><span class="skill-cat">AI</span></div>
+  <div class="skill-desc">Exploratory QA of web apps: find bugs, evidence, reports.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="setup" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">dorabox-bringup</span><span class="skill-cat">Setup</span></div>
+  <div class="skill-desc">Bring up DoraBox as a new Hermes agent (Kubuntu + AMD GPU 8GB). Covers SSH enable, key deployment, bootstrap, Ollama test, role definition, and Ada replication.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="ops" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">gdrive-backup-rclone</span><span class="skill-cat">Ops</span></div>
+  <div class="skill-desc">Set up a 3-2-1 backup pipeline using rclone + Google Drive for any agent's state (memory, scripts, skills, configs, bridge.db, .env-adjacent).</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="setup" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">max-restore</span><span class="skill-cat">Setup</span></div>
+  <div class="skill-desc">Restore Max (maxbox planner) when offline, corrupted, or freshly imaged. Covers preflight checks, bundle transfer, bootstrap, verification, monitoring.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="ops" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">mesh-bridge-sync</span><span class="skill-cat">Ops</span></div>
+  <div class="skill-desc">bridge.py is local-only — each box's bridge.db is an independent SQLite file. Cross-box messages do NOT propagate on their own. Sync them.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="mrr" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">💰</span><span class="skill-name">mrr-project-shaping</span><span class="skill-cat">MRR</span></div>
+  <div class="skill-desc">Shape, kick off, and operate a Monthly Recurring Revenue (MRR) project. Covers the ask-the-3-questions framework, payments-ready integrations, parallel pivots.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="comms" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">multi-channel-comms</span><span class="skill-cat">Comms</span></div>
+  <div class="skill-desc">Multi-channel messaging stack — Telegram, Element/Matrix, WhatsApp, Discord, Signal. Configure, fan out, and degrade gracefully across channels.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="comms" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">persona-rename-across-system</span><span class="skill-cat">Comms</span></div>
+  <div class="skill-desc">Rename an AI persona's identity (name, tone, references) consistently across the entire agent system — config files, persona definitions, scripts, skills, wiki.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="ai" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">🧠</span><span class="skill-name">personalized-llm-finetune</span><span class="skill-cat">AI</span></div>
+  <div class="skill-desc">Fine-tune a small personalized LLM (1-3B params) on consumer GPU hardware in a weekend — to capture the persona, voice, and knowledge of a specific agent.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="ops" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">self-improving-agent</span><span class="skill-cat">Ops</span></div>
+  <div class="skill-desc">Self-analysis + self-improvement loop for every agent. Load on idle or after task completion to review recent work, find improvements, and apply safe ones.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="misc" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">📦</span><span class="skill-name">tandem-work</span><span class="skill-cat">Other</span></div>
+  <div class="skill-desc">Standing rules for Ada — tandem work, 90s update cadence, always check back, delegate to agents, JSON-first status.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="comms" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">telegram-delivery-debugging</span><span class="skill-cat">Comms</span></div>
+  <div class="skill-desc">Diagnose and fix Telegram bot delivery issues, outbound-message buffering, 5-minute delivery delays. Full diagnostic ladder and nuclear reset recipe.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+<a class="skill" data-cat="misc" href="#bundles">
+  <div class="skill-head"><span class="skill-icon">📦</span><span class="skill-name">yuanbao</span><span class="skill-cat">Other</span></div>
+  <div class="skill-desc">Yuanbao (元宝) groups: @mention users, query info/members.</div>
+  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
+</a>
+    </div>
+  </div>
+</section>
+
+<section id="payments">
+  <div class="wrap">
+    <h2>How payment works</h2>
+    <p class="lede">Static GitHub Pages site → hosted checkout → instant download. No backend to run, no tax paperwork for you.</p>
+    <table class="pay-table">
+      <thead><tr><th>Provider</th><th>Fee</th><th>What they handle</th><th>Delivery</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr class="pick"><td>Lemonsqueezy</td><td>5% + 50¢</td><td>Merchant of Record — handles global VAT/sales tax for you</td><td>Built-in signed downloads</td><td>Best for MVP — zero tax headache</td></tr>
+        <tr><td>Stripe Checkout</td><td>2.9% + 30¢</td><td>Full control, you handle tax/VAT yourself</td><td>Webhook + S3/GitHub release</td><td>Best at scale; lower per-txn cost</td></tr>
+        <tr><td>Stripe Payment Links</td><td>2.9% + 30¢</td><td>Hosted buy buttons — drop into any static page</td><td>Redirect + email</td><td>Best for GitHub Pages (no backend)</td></tr>
+        <tr><td>Gumroad</td><td>10% flat</td><td>No-code listings, handles tax &amp; delivery</td><td>Built-in</td><td>Easiest but highest fee</td></tr>
+      </tbody>
+    </table>
+    <p style="text-align:center;color:var(--text-dim);margin-top:24px;font-size:14px">
+      <b>MVP pick:</b> Lemonsqueezy. 5% + 50¢ feels like more than Stripe's 2.9% + 30¢, but Lemonsqueezy is your <b>Merchant of Record</b> — they collect VAT, sales tax, GST, and handle refund disputes globally. One bill, one dashboard, zero tax filings. We can switch to Stripe Connect in week 4 once MRR justifies the compliance lift.
+    </p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Common questions</h2>
+    <div class="faq">
+      <details open>
+        <summary>What exactly do I get when I buy a bundle?</summary>
+        <p>A ZIP containing each skill's <code>SKILL.md</code> and supporting files (scripts, references, configs). Unzip into <code>~/.hermes/skills/</code> and your agent loads them on the next turn. You get a private download link valid for 5 downloads.</p>
+      </details>
+      <details>
+        <summary>How are the skills licensed?</summary>
+        <p>MIT-style for personal and commercial use. You can modify, redistribute inside your company, and ship derivatives. You can't resell the original ZIP.</p>
+      </details>
+      <details>
+        <summary>What about refunds?</summary>
+        <p>14-day no-questions refund if the bundle doesn't ship value for you. Email refunds@skillhub.dev with your order ID. Chargebacks processed via Lemonsqueezy dashboard in &lt;48h.</p>
+      </details>
+      <details>
+        <summary>Do I get updates when new skills ship?</summary>
+        <p>Yes — lifetime free updates for any bundle you buy. When we add a new skill to a bundle, you get an email with a fresh download link.</p>
+      </details>
+      <details>
+        <summary>Why not just use the free skills already in the repo?</summary>
+        <p>You can — these are the same skills, packaged. Buying a bundle funds continued curation, the bundle packaging, the documentation polish, and the payment infrastructure. Think of it as "support the curator" + skip the assembly work.</p>
+      </details>
+      <details>
+        <summary>Can I submit my own skill?</summary>
+        <p>Yes. Use the GitHub repo's skill submission template. Approved skills get a 70/30 revenue split via Stripe Connect once we hit month 3.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:0;padding-bottom:96px">
+  <div class="wrap" style="text-align:center">
+    <h2>New skill drops — first to know.</h2>
+    <p class="lede">One short email per month when a new bundle ships. No spam, unsubscribe in one click.</p>
+    <form class="wform" onsubmit="event.preventDefault();window.__toast('✓ Subscribed. Welcome aboard.')">
+      <input type="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="btn btn-primary" type="submit">Subscribe →</button>
+    </form>
+    <span class="hint">No spam. Unsubscribe anytime. We never share your email.</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>© 2026 Skill Hub · A Hermes Agent marketplace by Ada + Gio · <a href="https://github.com/gsantana212/skill-hub" rel="noopener">github.com/gsantana212/skill-hub</a></div>
+    <div class="foot-links">
+      <a href="https://github.com/gsantana212/skill-hub" rel="noopener">GitHub</a>
+      <a href="mailto:hello@skillhub.dev">Email</a>
+      <a href="#bundles">Buy</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
 <script>
-// Old marketing-page index being replaced by the new marketplace.
-// GitHub Pages will rebuild with the new content shortly.
-window.location.replace('https://gsantana212.github.io/skill-hub/');
+(function(){
+  const saved = localStorage.getItem('sh-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('sh-theme', next);
+  });
+})();
+window.__toast = function(msg) {
+  const t = document.getElementById('toast');
+  t.innerHTML = msg;
+  t.classList.add('show');
+  clearTimeout(window.__toast._tm);
+  window.__toast._tm = setTimeout(()=>t.classList.remove('show'), 4200);
+};
+document.querySelectorAll('.buy-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const url = btn.dataset.url;
+    const price = btn.dataset.price;
+    const name = btn.closest('.bundle').querySelector('.bundle-name').textContent;
+    if (url && !url.includes('YOUR-LEMONSQUEEZY-STORE')) {
+      if (window.LemonSqueezy && window.LemonSqueezy.Url && window.LemonSqueezy.Url.Open) {
+        window.LemonSqueezy.Url.Open(url);
+        return;
+      }
+    }
+    window.__toast('🛒 <b>' + name + '</b> — $' + price + '<br><span class="em">checkout not wired yet</span><br><small>Set up Lemonsqueezy store + replace YOUR-LEMONSQUEEZY-STORE in <code>index.html</code>. See <code>INTEGRATION.md</code>.</small>');
+  });
+});
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const t = document.querySelector(id);
+      if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
+  });
+});
 </script>
+
 </body>
 </html>
