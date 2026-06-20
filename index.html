@@ -13,17 +13,9 @@
 <meta property="og:description" content="Buy curated bundles of Hermes Agent skills. One-command install. Lifetime updates.">
 <meta property="og:url" content="https://gsantana212.github.io/skill-hub/">
 <meta property="og:site_name" content="Skill Hub">
-<meta property="og:image" content="https://gsantana212.github.io/skill-hub/banner.svg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Skill Hub — Curated Hermes Agent skills">
-<meta name="twitter:description" content="Buy curated bundles of Hermes Agent skills. One-command install. Lifetime updates.">
-<meta name="twitter:image" content="https://gsantana212.github.io/skill-hub/banner.svg">
-<meta name="robots" content="index, follow">
+<meta property="og:image" content="/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237c5cff'/%3E%3Cpath d='M9 22V10h6.5a4 4 0 0 1 1.5 7.6L20 22h-3.4l-2.7-4H12v4H9zm3-6.6h3.3a1.7 1.7 0 0 0 0-3.4H12v3.4z' fill='white'/%3E%3C/svg%3E">
-<script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+<!-- Payment integration activating — see script below. Lemonsqueezy SDK removed (placeholder store URL would 404). -->
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -170,6 +162,21 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
 .toast .em{font-family:var(--mono);background:rgba(255,255,255,.15);padding:2px 6px;border-radius:4px;font-size:12px}
 .toast code{font-size:11.5px;background:rgba(255,255,255,.15);padding:2px 6px;border-radius:4px}
 @media(max-width:680px){.hero{padding:64px 0 48px}.hero h1{font-size:42px}}
+
+/* More from Ada Mesh (cross-link section) */
+.mesh-crosslinks{padding:72px 0;border-top:1px solid var(--border);background:var(--bg-soft)}
+.mesh-crosslinks h2{font-size:28px;font-weight:700;letter-spacing:-.02em;text-align:center;margin:0 0 8px;color:var(--text)}
+.mesh-crosslinks .lede{text-align:center;color:var(--text-dim);font-size:15px;max-width:680px;margin:0 auto 32px}
+.mesh-crosslinks .mesh-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.mesh-crosslinks .mesh-card{
+  display:block;padding:20px;border:1px solid var(--border);border-radius:12px;
+  background:var(--bg-card);transition:transform .15s,border-color .15s,background .15s;
+}
+.mesh-crosslinks .mesh-card:hover{transform:translateY(-2px);border-color:var(--border-strong);background:var(--bg-elev)}
+.mesh-crosslinks .mesh-icon{font-size:1.5rem;margin-bottom:6px;display:block}
+.mesh-crosslinks .mesh-card h3{font-size:1rem;font-weight:600;margin:0 0 4px;color:var(--text)}
+.mesh-crosslinks .mesh-card p{font-size:0.84rem;color:var(--text-dim);margin:0}
+.mesh-crosslinks .mesh-card .mesh-cta{margin-top:8px;font-size:0.8rem;color:var(--brand);font-weight:600}
 </style>
 </head>
 <body>
@@ -246,69 +253,13 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
     <h2>Pick a bundle. Ship today.</h2>
     <p class="lede">Every bundle is a curated set of Hermes skills that work together. One price, one download, lifetime updates.</p>
     <div class="bundles">
-<article class="bundle" id="bundle-operator">
-  <header class="bundle-head">
-    <span class="bundle-tag">BUNDLE</span>
-    <h3 class="bundle-name">Agent Operator Starter Pack</h3>
-    <p class="bundle-tagline">Spin up new agent boxes. Bootstrap. Replicate. Sync.</p>
-  </header>
-  <div class="bundle-price"><span class="amount">$19</span><span class="period">one-time</span></div>
-  <ul class="bundle-features"><li>Root escalation wrapper</li><li>Full-state replication</li><li>Box bring-up SOP</li><li>Cross-mesh sync</li></ul>
-  <div class="bundle-meta">5 skills · Lifetime updates · MIT-style license</div>
-  <div class="bundle-cta">
-    <button class="btn btn-primary buy-btn" data-bundle="operator" data-sku="hermes-operator" data-price="19" data-url="https://YOUR-LEMONSQUEEZY-STORE.lemonsqueezy.com/buy/hermes-operator">Buy $19 <span aria-hidden="true">→</span></button>
-    <details class="bundle-skills"><summary>See 5 skills included</summary>
-      <ul><li><code>agent-sudo-wrapper</code></li><li><code>ada-replication</code></li><li><code>dorabox-bringup</code></li><li><code>max-restore</code></li><li><code>mesh-bridge-sync</code></li></ul>
-    </details></div>
-</article>
-<article class="bundle" id="bundle-mrr">
-  <header class="bundle-head">
-    <span class="bundle-tag">BUNDLE</span>
-    <h3 class="bundle-name">MRR &amp; Income Toolkit</h3>
-    <p class="bundle-tagline">Ship paid projects. Iterate. Self-improve. Make MRR.</p>
-  </header>
-  <div class="bundle-price"><span class="amount">$29</span><span class="period">one-time</span></div>
-  <ul class="bundle-features"><li>3-question niche framework</li><li>90s cadence rules</li><li>Self-improvement loop</li><li>Fine-tune on consumer GPU</li></ul>
-  <div class="bundle-meta">4 skills · Lifetime updates · MIT-style license</div>
-  <div class="bundle-cta">
-    <button class="btn btn-primary buy-btn" data-bundle="mrr" data-sku="hermes-mrr" data-price="29" data-url="https://YOUR-LEMONSQUEEZY-STORE.lemonsqueezy.com/buy/hermes-mrr">Buy $29 <span aria-hidden="true">→</span></button>
-    <details class="bundle-skills"><summary>See 4 skills included</summary>
-      <ul><li><code>mrr-project-shaping</code></li><li><code>self-improving-agent</code></li><li><code>tandem-work</code></li><li><code>personalized-llm-finetune</code></li></ul>
-    </details></div>
-</article>
-<article class="bundle" id="bundle-comms">
-  <header class="bundle-head">
-    <span class="bundle-tag">BUNDLE</span>
-    <h3 class="bundle-name">Comms &amp; Debugging Pro</h3>
-    <p class="bundle-tagline">Multi-channel messaging. Persona rename. Telegram fix.</p>
-  </header>
-  <div class="bundle-price"><span class="amount">$15</span><span class="period">one-time</span></div>
-  <ul class="bundle-features"><li>Telegram/Discord/Matrix</li><li>Telegram delivery fix</li><li>Persona identity rename</li></ul>
-  <div class="bundle-meta">3 skills · Lifetime updates · MIT-style license</div>
-  <div class="bundle-cta">
-    <button class="btn btn-primary buy-btn" data-bundle="comms" data-sku="hermes-comms" data-price="15" data-url="https://YOUR-LEMONSQUEEZY-STORE.lemonsqueezy.com/buy/hermes-comms">Buy $15 <span aria-hidden="true">→</span></button>
-    <details class="bundle-skills"><summary>See 3 skills included</summary>
-      <ul><li><code>multi-channel-comms</code></li><li><code>telegram-delivery-debugging</code></li><li><code>persona-rename-across-system</code></li></ul>
-    </details></div>
-</article>
-<article class="bundle" id="bundle-vault">
-  <header class="bundle-head">
-    <span class="bundle-tag">BUNDLE</span>
-    <h3 class="bundle-name">The Full Vault</h3>
-    <p class="bundle-tagline">Every curated Hermes skill. All 30+ skills. One price.</p>
-  </header>
-  <div class="bundle-price"><span class="amount">$49</span><span class="period">one-time</span></div>
-  <ul class="bundle-features"><li>All current skills</li><li>Free updates for life</li><li>Priority support</li><li>Source-available license</li></ul>
-  <div class="bundle-meta">15 skills · Lifetime updates · MIT-style license</div>
-  <div class="bundle-cta">
-    <button class="btn btn-primary buy-btn" data-bundle="vault" data-sku="hermes-vault" data-price="49" data-url="https://YOUR-LEMONSQUEEZY-STORE.lemonsqueezy.com/buy/hermes-vault">Buy $49 <span aria-hidden="true">→</span></button>
-    <details class="bundle-skills"><summary>See 15 skills included</summary>
-      <ul><li><code>ada-replication</code></li><li><code>agent-sudo-wrapper</code></li><li><code>dogfood</code></li><li><code>dorabox-bringup</code></li><li><code>gdrive-backup-rclone</code></li><li><code>max-restore</code></li><li><code>mesh-bridge-sync</code></li><li><code>mrr-project-shaping</code></li><li><code>multi-channel-comms</code></li><li><code>persona-rename-across-system</code></li><li><code>personalized-llm-finetune</code></li><li><code>self-improving-agent</code></li><li><code>tandem-work</code></li><li><code>telegram-delivery-debugging</code></li><li><code>yuanbao</code></li></ul>
-    </details></div>
-</article>
+<article class="bundle" id="bundle-operator"><header class="bundle-head"><span class="bundle-tag">BUNDLE</span><h3 class="bundle-name">Agent Operator Starter Pack</h3><p class="bundle-tagline">Spin up new agent boxes. Bootstrap. Replicate. Sync.</p></header><div class="bundle-price"><span class="amount">$19</span><span class="period">one-time</span></div><ul class="bundle-features"><li>Root escalation wrapper</li><li>Full-state replication</li><li>Box bring-up SOP</li><li>Cross-mesh sync</li></ul><div class="bundle-meta">5 skills · Lifetime updates · MIT-style license</div><div class="bundle-cta"><button class="btn btn-primary buy-btn" data-bundle="operator" data-sku="hermes-operator" data-price="19" data-url="mailto:gsantana212@gmail.com?subject=Buy%20Agent%20Operator%20Starter%20Pack%20(%2419)">Buy $19 <span aria-hidden="true">→</span></button><details class="bundle-skills"><summary>See 5 skills included</summary><ul><li><code>agent-sudo-wrapper</code></li><li><code>ada-replication</code></li><li><code>dorabox-bringup</code></li><li><code>max-restore</code></li><li><code>mesh-bridge-sync</code></li></ul></details></div></article>
+<article class="bundle" id="bundle-mrr"><header class="bundle-head"><span class="bundle-tag">BUNDLE</span><h3 class="bundle-name">MRR & Income Toolkit</h3><p class="bundle-tagline">Ship paid projects. Iterate. Self-improve. Make MRR.</p></header><div class="bundle-price"><span class="amount">$29</span><span class="period">one-time</span></div><ul class="bundle-features"><li>3-question niche framework</li><li>90s cadence rules</li><li>Self-improvement loop</li><li>Fine-tune on consumer GPU</li></ul><div class="bundle-meta">4 skills · Lifetime updates · MIT-style license</div><div class="bundle-cta"><button class="btn btn-primary buy-btn" data-bundle="mrr" data-sku="hermes-mrr" data-price="29" data-url="mailto:gsantana212@gmail.com?subject=Buy%20MRR%20%26%20Income%20Toolkit%20(%2429)">Buy $29 <span aria-hidden="true">→</span></button><details class="bundle-skills"><summary>See 4 skills included</summary><ul><li><code>mrr-project-shaping</code></li><li><code>self-improving-agent</code></li><li><code>tandem-work</code></li><li><code>personalized-llm-finetune</code></li></ul></details></div></article>
+<article class="bundle" id="bundle-comms"><header class="bundle-head"><span class="bundle-tag">BUNDLE</span><h3 class="bundle-name">Comms & Debugging Pro</h3><p class="bundle-tagline">Multi-channel messaging. Persona rename. Telegram fix.</p></header><div class="bundle-price"><span class="amount">$15</span><span class="period">one-time</span></div><ul class="bundle-features"><li>Telegram/Discord/Matrix</li><li>Telegram delivery fix</li><li>Persona identity rename</li></ul><div class="bundle-meta">3 skills · Lifetime updates · MIT-style license</div><div class="bundle-cta"><button class="btn btn-primary buy-btn" data-bundle="comms" data-sku="hermes-comms" data-price="15" data-url="mailto:gsantana212@gmail.com?subject=Buy%20Comms%20%26%20Debugging%20Pro%20(%2415)">Buy $15 <span aria-hidden="true">→</span></button><details class="bundle-skills"><summary>See 3 skills included</summary><ul><li><code>multi-channel-comms</code></li><li><code>telegram-delivery-debugging</code></li><li><code>persona-rename-across-system</code></li></ul></details></div></article>
+<article class="bundle" id="bundle-vault"><header class="bundle-head"><span class="bundle-tag">BUNDLE</span><h3 class="bundle-name">The Full Vault</h3><p class="bundle-tagline">Every curated Hermes skill. All 30+ skills. One price.</p></header><div class="bundle-price"><span class="amount">$49</span><span class="period">one-time</span></div><ul class="bundle-features"><li>All current skills</li><li>Free updates for life</li><li>Priority support</li><li>Source-available license</li></ul><div class="bundle-meta">15 skills · Lifetime updates · MIT-style license</div><div class="bundle-cta"><button class="btn btn-primary buy-btn" data-bundle="vault" data-sku="hermes-vault" data-price="49" data-url="mailto:gsantana212@gmail.com?subject=Buy%20The%20Full%20Vault%20(%2449)">Buy $49 <span aria-hidden="true">→</span></button><details class="bundle-skills"><summary>See 15 skills included</summary><ul><li><code>ada-replication</code></li><li><code>agent-sudo-wrapper</code></li><li><code>dogfood</code></li><li><code>dorabox-bringup</code></li><li><code>gdrive-backup-rclone</code></li><li><code>max-restore</code></li><li><code>mesh-bridge-sync</code></li><li><code>mrr-project-shaping</code></li><li><code>multi-channel-comms</code></li><li><code>persona-rename-across-system</code></li><li><code>personalized-llm-finetune</code></li><li><code>self-improving-agent</code></li><li><code>tandem-work</code></li><li><code>telegram-delivery-debugging</code></li><li><code>yuanbao</code></li></ul></details></div></article>
     </div>
     <p style="text-align:center;color:var(--text-mute);font-size:13px;margin-top:24px">
-      Payments processed via <b>Lemonsqueezy</b> (Merchant of Record) · Major cards · Apple/Google Pay · Bank transfers in 30+ countries.
+      <b>Checkout activating</b> — Buy buttons currently open an email to <a href="mailto:gsantana212@gmail.com" style="color:var(--brand)">gsantana212@gmail.com</a>. Stripe Payment Links and Lemonsqueezy store wiring land in week 2.
     </p>
   </div>
 </section>
@@ -318,81 +269,21 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
     <h2>Every skill in the catalog</h2>
     <p class="lede">Same skills you'd build yourself — production-tested on Ada, Max, dora, and OpenCode across the mesh.</p>
     <div class="skills">
-<a class="skill" data-cat="setup" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">ada-replication</span><span class="skill-cat">Setup</span></div>
-  <div class="skill-desc">Replicate Ada (the master Hermes agent) onto a remote box so it can serve as a fully-loaded peer agent. Covers full state, persona, memory, skills, scripts.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="setup" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">agent-sudo-wrapper</span><span class="skill-cat">Setup</span></div>
-  <div class="skill-desc">When a hermes-runtime agent needs to run sudo non-interactively but the runtime blocks sudo -S from external stdin pipes as a brute-force attack vector.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="ai" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">🧠</span><span class="skill-name">dogfood</span><span class="skill-cat">AI</span></div>
-  <div class="skill-desc">Exploratory QA of web apps: find bugs, evidence, reports.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="setup" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">dorabox-bringup</span><span class="skill-cat">Setup</span></div>
-  <div class="skill-desc">Bring up DoraBox as a new Hermes agent (Kubuntu + AMD GPU 8GB). Covers SSH enable, key deployment, bootstrap, Ollama test, role definition, and Ada replication.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="ops" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">gdrive-backup-rclone</span><span class="skill-cat">Ops</span></div>
-  <div class="skill-desc">Set up a 3-2-1 backup pipeline using rclone + Google Drive for any agent's state (memory, scripts, skills, configs, bridge.db, .env-adjacent).</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="setup" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">max-restore</span><span class="skill-cat">Setup</span></div>
-  <div class="skill-desc">Restore Max (maxbox planner) when offline, corrupted, or freshly imaged. Covers preflight checks, bundle transfer, bootstrap, verification, monitoring.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="ops" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">mesh-bridge-sync</span><span class="skill-cat">Ops</span></div>
-  <div class="skill-desc">bridge.py is local-only — each box's bridge.db is an independent SQLite file. Cross-box messages do NOT propagate on their own. Sync them.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="mrr" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">💰</span><span class="skill-name">mrr-project-shaping</span><span class="skill-cat">MRR</span></div>
-  <div class="skill-desc">Shape, kick off, and operate a Monthly Recurring Revenue (MRR) project. Covers the ask-the-3-questions framework, payments-ready integrations, parallel pivots.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="comms" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">multi-channel-comms</span><span class="skill-cat">Comms</span></div>
-  <div class="skill-desc">Multi-channel messaging stack — Telegram, Element/Matrix, WhatsApp, Discord, Signal. Configure, fan out, and degrade gracefully across channels.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="comms" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">persona-rename-across-system</span><span class="skill-cat">Comms</span></div>
-  <div class="skill-desc">Rename an AI persona's identity (name, tone, references) consistently across the entire agent system — config files, persona definitions, scripts, skills, wiki.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="ai" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">🧠</span><span class="skill-name">personalized-llm-finetune</span><span class="skill-cat">AI</span></div>
-  <div class="skill-desc">Fine-tune a small personalized LLM (1-3B params) on consumer GPU hardware in a weekend — to capture the persona, voice, and knowledge of a specific agent.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="ops" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">self-improving-agent</span><span class="skill-cat">Ops</span></div>
-  <div class="skill-desc">Self-analysis + self-improvement loop for every agent. Load on idle or after task completion to review recent work, find improvements, and apply safe ones.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="misc" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">📦</span><span class="skill-name">tandem-work</span><span class="skill-cat">Other</span></div>
-  <div class="skill-desc">Standing rules for Ada — tandem work, 90s update cadence, always check back, delegate to agents, JSON-first status.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="comms" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">telegram-delivery-debugging</span><span class="skill-cat">Comms</span></div>
-  <div class="skill-desc">Diagnose and fix Telegram bot delivery issues, outbound-message buffering, 5-minute delivery delays. Full diagnostic ladder and nuclear reset recipe.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
-<a class="skill" data-cat="misc" href="#bundles">
-  <div class="skill-head"><span class="skill-icon">📦</span><span class="skill-name">yuanbao</span><span class="skill-cat">Other</span></div>
-  <div class="skill-desc">Yuanbao (元宝) groups: @mention users, query info/members.</div>
-  <div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div>
-</a>
+<a class="skill" data-cat="setup" href="#bundles"><div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">ada-replication</span><span class="skill-cat">Setup</span></div><div class="skill-desc">Replicate Ada (the master Hermes agent) onto a remote box so it can serve as a fully-loaded peer agent. Covers full state, persona, memory, skills, scripts, and</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="setup" href="#bundles"><div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">agent-sudo-wrapper</span><span class="skill-cat">Setup</span></div><div class="skill-desc">When a hermes-runtime agent needs to run `sudo` non-interactively but the runtime blocks `sudo -S` from external stdin pipes as a "brute-force attack vector", u</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="ai" href="#bundles"><div class="skill-head"><span class="skill-icon">🧠</span><span class="skill-name">dogfood</span><span class="skill-cat">AI</span></div><div class="skill-desc">"Exploratory QA of web apps: find bugs, evidence, reports."</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="setup" href="#bundles"><div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">dorabox-bringup</span><span class="skill-cat">Setup</span></div><div class="skill-desc">Bring up DoraBox as a new Hermes agent (Kubuntu + AMD GPU 8GB). Covers SSH enable, key deployment, bootstrap, Ollama test, role definition, and Ada replication.</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="ops" href="#bundles"><div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">gdrive-backup-rclone</span><span class="skill-cat">Ops</span></div><div class="skill-desc">Set up a 3-2-1 backup pipeline using rclone + Google Drive for any agent's state (memory, scripts, skills, configs, bridge.db, .env-adjacent). rclone handles th</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="setup" href="#bundles"><div class="skill-head"><span class="skill-icon">⚙️</span><span class="skill-name">max-restore</span><span class="skill-cat">Setup</span></div><div class="skill-desc">Restore Max (maxbox planner) when offline, corrupted, or freshly imaged. Covers preflight checks, bundle transfer, bootstrap, verification, monitoring, and Ada </div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="ops" href="#bundles"><div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">mesh-bridge-sync</span><span class="skill-cat">Ops</span></div><div class="skill-desc">"bridge.py is local-only — each box's bridge.db is an independent SQLite file. Cross-box messages do NOT propagate on their own. To get real-time cross-agent co</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="mrr" href="#bundles"><div class="skill-head"><span class="skill-icon">💰</span><span class="skill-name">mrr-project-shaping</span><span class="skill-cat">MRR</span></div><div class="skill-desc">Shape, kick off, and operate a Monthly Recurring Revenue (MRR) project. Covers the ask-the-3-questions framework, payments-ready integrations, parallel pivots, </div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="comms" href="#bundles"><div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">multi-channel-comms</span><span class="skill-cat">Comms</span></div><div class="skill-desc">Multi-channel messaging stack — Telegram, Element/Matrix, WhatsApp, Discord, Signal. Configure, fan out, and degrade gracefully across channels. Load when the u</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="comms" href="#bundles"><div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">persona-rename-across-system</span><span class="skill-cat">Comms</span></div><div class="skill-desc">Rename an AI persona's identity (name, tone, references) consistently across the entire agent system — config files, persona definitions, scripts, skills, wiki </div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="ai" href="#bundles"><div class="skill-head"><span class="skill-icon">🧠</span><span class="skill-name">personalized-llm-finetune</span><span class="skill-cat">AI</span></div><div class="skill-desc">Fine-tune a small personalized LLM (1-3B params) on consumer GPU hardware in a weekend — to capture the persona, voice, and knowledge of a specific AI agent so </div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="ops" href="#bundles"><div class="skill-head"><span class="skill-icon">🔗</span><span class="skill-name">self-improving-agent</span><span class="skill-cat">Ops</span></div><div class="skill-desc">Self-analysis + self-improvement loop for every agent. Load on idle or after task completion to review recent work, find improvements, and apply safe ones auton</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="misc" href="#bundles"><div class="skill-head"><span class="skill-icon">📦</span><span class="skill-name">tandem-work</span><span class="skill-cat">Other</span></div><div class="skill-desc">Standing rules for Ada — tandem work, 90s update cadence, always check back, delegate to agents, JSON-first status. Load this skill whenever user gives a new di</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="comms" href="#bundles"><div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">telegram-delivery-debugging</span><span class="skill-cat">Comms</span></div><div class="skill-desc">Diagnose and fix "Telegram bot only responds when I message first" / outbound-message buffering / 5-minute delivery delays. The full diagnostic ladder, the comm</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
+<a class="skill" data-cat="misc" href="#bundles"><div class="skill-head"><span class="skill-icon">📦</span><span class="skill-name">yuanbao</span><span class="skill-cat">Other</span></div><div class="skill-desc">"Yuanbao (元宝) groups: @mention users, query info/members."</div><div class="skill-tags"><span class="tag">SKILL.md</span><span class="tag">v1.0</span></div></a>
     </div>
   </div>
 </section>
@@ -407,7 +298,7 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
         <tr class="pick"><td>Lemonsqueezy</td><td>5% + 50¢</td><td>Merchant of Record — handles global VAT/sales tax for you</td><td>Built-in signed downloads</td><td>Best for MVP — zero tax headache</td></tr>
         <tr><td>Stripe Checkout</td><td>2.9% + 30¢</td><td>Full control, you handle tax/VAT yourself</td><td>Webhook + S3/GitHub release</td><td>Best at scale; lower per-txn cost</td></tr>
         <tr><td>Stripe Payment Links</td><td>2.9% + 30¢</td><td>Hosted buy buttons — drop into any static page</td><td>Redirect + email</td><td>Best for GitHub Pages (no backend)</td></tr>
-        <tr><td>Gumroad</td><td>10% flat</td><td>No-code listings, handles tax &amp; delivery</td><td>Built-in</td><td>Easiest but highest fee</td></tr>
+        <tr><td>Gumroad</td><td>10% flat</td><td>No-code listings, handles tax & delivery</td><td>Built-in</td><td>Easiest but highest fee</td></tr>
       </tbody>
     </table>
     <p style="text-align:center;color:var(--text-dim);margin-top:24px;font-size:14px">
@@ -460,12 +351,39 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
   </div>
 </section>
 
+<section class="mesh-crosslinks">
+  <div class="wrap">
+    <h2>More from Ada Mesh</h2>
+    <p class="lede">Skill Hub is the brain. These are the playbooks &mdash; same brain, different products.</p>
+    <div class="mesh-grid">
+      <a class="mesh-card" href="https://gsantana212.github.io/local-llm-playbook/">
+        <span class="mesh-icon">⚡</span>
+        <h3>Local LLMs on a Shoebox</h3>
+        <p>Max&rsquo;s $600 private AI playbook. 13 pages, hardware matrix, 30-day refund.</p>
+        <span class="mesh-cta">See the playbook →</span>
+      </a>
+      <a class="mesh-card" href="https://gsantana212.github.io/etsy-prompt-pack/">
+        <span class="mesh-icon">🛍️</span>
+        <h3>30 AI Prompts That Sell</h3>
+        <p>Sora&rsquo;s Etsy seller prompt pack. 30 prompts, 16 pages, $14.</p>
+        <span class="mesh-cta">See the prompts →</span>
+      </a>
+      <a class="mesh-card" href="https://gsantana212.github.io/pdf-bundle/">
+        <span class="mesh-icon">📦</span>
+        <h3>The AI Builder&rsquo;s Bundle</h3>
+        <p>Both playbooks for $29 &mdash; save $4 vs buying separately.</p>
+        <span class="mesh-cta">Get the bundle →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap foot-row">
     <div>© 2026 Skill Hub · A Hermes Agent marketplace by Ada + Gio · <a href="https://github.com/gsantana212/skill-hub" rel="noopener">github.com/gsantana212/skill-hub</a></div>
     <div class="foot-links">
       <a href="https://github.com/gsantana212/skill-hub" rel="noopener">GitHub</a>
-      <a href="mailto:hello@skillhub.dev">Email</a>
+      <a href="mailto:gsantana212@gmail.com">Email</a>
       <a href="#bundles">Buy</a>
     </div>
   </div>
@@ -497,13 +415,13 @@ document.querySelectorAll('.buy-btn').forEach(btn => {
     const url = btn.dataset.url;
     const price = btn.dataset.price;
     const name = btn.closest('.bundle').querySelector('.bundle-name').textContent;
-    if (url && !url.includes('YOUR-LEMONSQUEEZY-STORE')) {
-      if (window.LemonSqueezy && window.LemonSqueezy.Url && window.LemonSqueezy.Url.Open) {
-        window.LemonSqueezy.Url.Open(url);
-        return;
-      }
+    // Open the mailto URL in the user's email client — no broken checkout links.
+    if (url && url.startsWith('mailto:')) {
+      window.location.href = url;
+      return;
     }
-    window.__toast('🛒 <b>' + name + '</b> — $' + price + '<br><span class="em">checkout not wired yet</span><br><small>Set up Lemonsqueezy store + replace YOUR-LEMONSQUEEZY-STORE in <code>index.html</code>. See <code>INTEGRATION.md</code>.</small>');
+    // Fallback for any non-mailto URL (legacy LemonSqueezy links removed).
+    window.__toast('🛒 <b>' + name + '</b> — $' + price + '<br><span class="em">Checkout activating</span><br><small>Email <a href="mailto:gsantana212@gmail.com" style="color:#fff;text-decoration:underline">gsantana212@gmail.com</a> to buy now.</small>');
   });
 });
 document.querySelectorAll('a[href^="#"]').forEach(a => {
