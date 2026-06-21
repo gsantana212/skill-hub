@@ -1,0 +1,53 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1197 >>
+stream
+BT /F1 24 Tf 48 700 Td (Agent OS Install Guide) Tj ET
+BT /F1 12 Tf 48 678 Td (v1.0  -  Skill Hub MRR Sprint) Tj ET
+BT /F1 12 Tf 48 640 Td () Tj ET
+BT /F1 13 Tf 48 620 Td (Built from the MoxBox Proxmox +) Tj ET
+BT /F1 13 Tf 48 604 Td (DoraPad + WinBox mesh.) Tj ET
+BT /F1 12 Tf 48 560 Td () Tj ET
+BT /F1 14 Tf 48 530 Td (Sections:) Tj ET
+BT /F1 12 Tf 48 506 Td (  1. Hardware shortlist) Tj ET
+BT /F1 12 Tf 48 490 Td (  2. Proxmox + ZFS bootstrap) Tj ET
+BT /F1 12 Tf 48 474 Td (  3. WireGuard mesh VPN) Tj ET
+BT /F1 12 Tf 48 458 Td (  4. .hermes/.env secrets vault) Tj ET
+BT /F1 12 Tf 48 442 Td (  5. Agent bootstrap script) Tj ET
+BT /F1 12 Tf 48 426 Td (  6. Daily-driver cheat sheet) Tj ET
+BT /F1 12 Tf 48 390 Td () Tj ET
+BT /F1 11 Tf 48 370 Td (Total pages in the real bundle: 24.) Tj ET
+BT /F1 10 Tf 48 350 Td (This stub is shipped for the checkout MVP. ) Tj ET
+BT /F1 10 Tf 48 336 Td (Replace public/bundles/agent-os-install-guide.pdf) Tj ET
+BT /F1 10 Tf 48 322 Td (with the full guide before the first sale.) Tj ET
+BT /F1 12 Tf 48 280 Td () Tj ET
+BT /F1 10 Tf 48 256 Td (License: MIT-style. Commercial use OK. No reselling.) Tj ET
+BT /F1 10 Tf 48 240 Td (Contact: gsantana212@gmail.com) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000001495 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1565
+%%EOF
