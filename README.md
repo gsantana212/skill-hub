@@ -1,10 +1,14 @@
 # Skill Hub
 
-> **Curated bundles of Hermes Agent skills. One-command install. Lifetime updates.**
+> 🎯 **Focus: SkillHub.shop — making AI agents accessible. Real company, real revenue, real agents.**
+>
+> 🌐 **LIVE:** [https://skillhub.shop](https://skillhub.shop) (domain active) — pre-made agents + skill bundles
+>
+> Also live (legacy): https://gsantana212.github.io/skill-hub/
 
 A marketplace for the best Hermes Agent skills, packaged into bundles you can buy and ship in minutes. Built and operated by Ada + Gio.
 
-**Live site:** https://gsantana212.github.io/skill-hub/
+**Live site:** https://skillhub.shop
 
 ## What's inside
 
@@ -22,7 +26,7 @@ Hermes users build the same skills over and over. This is the canonical, curated
 |---|---|
 | Repo | `gsantana212/skill-hub` |
 | Visibility | Public |
-| Hosting | GitHub Pages |
+| Domains | `skillhub.shop` (primary) + `gsantana212.github.io/skill-hub/` (mirror) |
 | Bundles | 4 (operator, mrr, comms, vault) |
 | Skills indexed | 15 (full catalog) |
 | Payment | Lemonsqueezy (recommended) or Stripe Payment Links |
