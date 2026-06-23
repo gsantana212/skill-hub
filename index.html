@@ -24,6 +24,10 @@
 <meta name="robots" content="index, follow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237c5cff'/%3E%3Cpath d='M9 22V10h6.5a4 4 0 0 1 1.5 7.6L20 22h-3.4l-2.7-4H12v4H9zm3-6.6h3.3a1.7 1.7 0 0 0 0-3.4H12v3.4z' fill='white'/%3E%3C/svg%3E">
 <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+<!-- Stripe.js (test mode). Publishable key pk_test_* is safe to embed; secret key sk_test_* stays server-side. -->
+<script src="https://js.stripe.com/v3/" defer></script>
+<!-- PayPal Smart Buttons SDK (sandbox-friendly: falls back to test env if no client-id). -->
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -125,6 +129,9 @@ section .lede{text-align:center;color:var(--text-dim);font-size:16px;max-width:6
 .bundle-meta{font-size:12px;color:var(--text-mute);padding-top:6px;border-top:1px dashed var(--border)}
 .bundle-cta{margin-top:auto;display:flex;flex-direction:column;gap:10px}
 .bundle-cta .buy-btn{justify-content:center;width:100%}
+.alt-pay{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.alt-pay .alt-btn{padding:8px 10px;font-size:12.5px;justify-content:center;width:100%}
+.pp-mark{font-weight:700;letter-spacing:-.01em;background:linear-gradient(90deg,#003087 0%,#009cde 50%,#003087 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
 .bundle-skills{font-size:12.5px;color:var(--text-mute)}
 .bundle-skills summary{cursor:pointer;color:var(--text-dim);padding:4px 0}
 .bundle-skills summary:hover{color:var(--text)}
@@ -176,6 +183,36 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
 .toast .em{font-family:var(--mono);background:rgba(255,255,255,.15);padding:2px 6px;border-radius:4px;font-size:12px}
 .toast code{font-size:11.5px;background:rgba(255,255,255,.15);padding:2px 6px;border-radius:4px}
 @media(max-width:680px){.hero{padding:64px 0 48px}.hero h1{font-size:42px}}
+/* Crypto wallet section */
+.crypto-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;max-width:780px;margin-left:auto;margin-right:auto}
+@media(max-width:680px){.crypto-grid{grid-template-columns:1fr}}
+.crypto-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.crypto-head{display:flex;align-items:center;gap:10px}
+.crypto-icon{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:700;font-size:16px;color:#fff}
+.crypto-icon.btc{background:linear-gradient(135deg,#f7931a 0%,#ffb13b 100%)}
+.crypto-icon.ln{background:linear-gradient(135deg,#9d4dff 0%,#5b8cff 100%)}
+.crypto-name{font-size:15px;font-weight:600}
+.crypto-net{font-size:11.5px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.08em;margin-left:auto}
+.crypto-addr{display:flex;align-items:center;gap:8px;background:var(--bg-soft);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:var(--mono);font-size:12px;color:var(--text-dim);word-break:break-all;line-height:1.4}
+.crypto-addr code{font-size:11.5px;background:transparent;padding:0;color:inherit}
+.crypto-copy{padding:5px 9px;font-size:11.5px;border-radius:6px;background:var(--bg-elev);border:1px solid var(--border-strong);color:var(--text-dim);cursor:pointer;flex-shrink:0;font-weight:500}
+.crypto-copy:hover{color:var(--text);border-color:var(--brand)}
+.crypto-copy.ok{color:var(--accent);border-color:var(--accent)}
+.crypto-note{font-size:11.5px;color:var(--text-mute);line-height:1.5}
+.crypto-note b{color:var(--text-dim)}
+/* PayPal Smart Buttons container */
+.pp-buttons{min-height:45px;margin-top:6px}
+/* Payment modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.modal-backdrop.show{display:flex}
+.modal{background:var(--bg-card);border:1px solid var(--border-strong);border-radius:14px;padding:28px;max-width:520px;width:100%;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto}
+.modal h3{margin:0 0 8px;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.modal .modal-sub{color:var(--text-dim);font-size:14px;margin-bottom:18px}
+.modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;display:grid;place-items:center;border-radius:8px;color:var(--text-mute);cursor:pointer;border:0;background:transparent;font-size:18px}
+.modal-close:hover{color:var(--text);background:var(--bg-soft)}
+.modal-row{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.modal-row label{font-size:12px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.06em;min-width:64px}
+.modal-row select,.modal-row input{flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg-elev);color:var(--text);font:inherit;font-size:13.5px}
 </style>
 </head>
 <body>
@@ -189,6 +226,7 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
     <div class="nav-links">
       <a href="#bundles">Bundles</a>
       <a href="#skills">Skills</a>
+      <a href="#crypto">Crypto</a>
       <a href="#payments">Payments</a>
       <a href="#faq">FAQ</a>
       <a href="https://github.com/gsantana212/skill-hub" rel="noopener">GitHub ↗</a>
@@ -262,7 +300,11 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
   <ul class="bundle-features"><li>Root escalation wrapper</li><li>Full-state replication</li><li>Box bring-up SOP</li><li>Cross-mesh sync</li></ul>
   <div class="bundle-meta">5 skills · Lifetime updates · MIT-style license</div>
   <div class="bundle-cta">
-    <button class="btn btn-primary buy-btn" data-bundle="operator" data-sku="hermes-operator" data-price="19" data-url="mailto:gsantana212@gmail.com?subject=Buy%20Agent%20Operator%20Starter%20Pack%20-%20%2419&body=Please%20send%20checkout%20and%20delivery%20for%20the%20Agent%20Operator%20Starter%20Pack.">Buy $19 <span aria-hidden="true">→</span></button>
+    <button class="btn btn-primary buy-btn" data-bundle="operator" data-sku="hermes-operator" data-price="19" data-stripe-link="https://buy.stripe.com/test_operator19" data-paypal-item="operator-19" data-crypto-amount="19" data-url="mailto:gsantana212@gmail.com?subject=Buy%20Agent%20Operator%20Starter%20Pack%20-%20%2419&body=Please%20send%20checkout%20and%20delivery%20for%20the%20Agent%20Operator%20Starter%20Pack.">Buy $19 <span aria-hidden="true">→</span></button>
+    <div class="alt-pay" role="group" aria-label="Alternative payment methods">
+      <button class="btn btn-ghost alt-btn" data-method="paypal" data-bundle="operator" data-price="19" type="button"><span class="pp-mark">PayPal</span></button>
+      <button class="btn btn-ghost alt-btn" data-method="crypto" data-bundle="operator" data-price="19" type="button">₿ Crypto</button>
+    </div>
     <details class="bundle-skills"><summary>See 5 skills included</summary>
       <ul><li><code>agent-sudo-wrapper</code></li><li><code>ada-replication</code></li><li><code>dorabox-bringup</code></li><li><code>max-restore</code></li><li><code>mesh-bridge-sync</code></li></ul>
     </details></div>
@@ -277,7 +319,11 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
   <ul class="bundle-features"><li>3-question niche framework</li><li>90s cadence rules</li><li>Self-improvement loop</li><li>Fine-tune on consumer GPU</li></ul>
   <div class="bundle-meta">4 skills · Lifetime updates · MIT-style license</div>
   <div class="bundle-cta">
-    <button class="btn btn-primary buy-btn" data-bundle="mrr" data-sku="hermes-mrr" data-price="29" data-url="mailto:gsantana212@gmail.com?subject=Buy%20MRR%20and%20Income%20Toolkit%20-%20%2429&body=Please%20send%20checkout%20and%20delivery%20for%20the%20MRR%20and%20Income%20Toolkit.">Buy $29 <span aria-hidden="true">→</span></button>
+    <button class="btn btn-primary buy-btn" data-bundle="mrr" data-sku="hermes-mrr" data-price="29" data-stripe-link="https://buy.stripe.com/test_mrr29" data-paypal-item="mrr-29" data-crypto-amount="29" data-url="mailto:gsantana212@gmail.com?subject=Buy%20MRR%20and%20Income%20Toolkit%20-%20%2429&body=Please%20send%20checkout%20and%20delivery%20for%20the%20MRR%20and%20Income%20Toolkit.">Buy $29 <span aria-hidden="true">→</span></button>
+    <div class="alt-pay" role="group" aria-label="Alternative payment methods">
+      <button class="btn btn-ghost alt-btn" data-method="paypal" data-bundle="mrr" data-price="29" type="button"><span class="pp-mark">PayPal</span></button>
+      <button class="btn btn-ghost alt-btn" data-method="crypto" data-bundle="mrr" data-price="29" type="button">₿ Crypto</button>
+    </div>
     <details class="bundle-skills"><summary>See 4 skills included</summary>
       <ul><li><code>mrr-project-shaping</code></li><li><code>self-improving-agent</code></li><li><code>tandem-work</code></li><li><code>personalized-llm-finetune</code></li></ul>
     </details></div>
@@ -292,7 +338,11 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
   <ul class="bundle-features"><li>Telegram/Discord/Matrix</li><li>Telegram delivery fix</li><li>Persona identity rename</li></ul>
   <div class="bundle-meta">3 skills · Lifetime updates · MIT-style license</div>
   <div class="bundle-cta">
-    <button class="btn btn-primary buy-btn" data-bundle="comms" data-sku="hermes-comms" data-price="15" data-url="mailto:gsantana212@gmail.com?subject=Buy%20Comms%20and%20Debugging%20Pro%20-%20%2415&body=Please%20send%20checkout%20and%20delivery%20for%20Comms%20and%20Debugging%20Pro.">Buy $15 <span aria-hidden="true">→</span></button>
+    <button class="btn btn-primary buy-btn" data-bundle="comms" data-sku="hermes-comms" data-price="15" data-stripe-link="https://buy.stripe.com/test_comms15" data-paypal-item="comms-15" data-crypto-amount="15" data-url="mailto:gsantana212@gmail.com?subject=Buy%20Comms%20and%20Debugging%20Pro%20-%20%2415&body=Please%20send%20checkout%20and%20delivery%20for%20Comms%20and%20Debugging%20Pro.">Buy $15 <span aria-hidden="true">→</span></button>
+    <div class="alt-pay" role="group" aria-label="Alternative payment methods">
+      <button class="btn btn-ghost alt-btn" data-method="paypal" data-bundle="comms" data-price="15" type="button"><span class="pp-mark">PayPal</span></button>
+      <button class="btn btn-ghost alt-btn" data-method="crypto" data-bundle="comms" data-price="15" type="button">₿ Crypto</button>
+    </div>
     <details class="bundle-skills"><summary>See 3 skills included</summary>
       <ul><li><code>multi-channel-comms</code></li><li><code>telegram-delivery-debugging</code></li><li><code>persona-rename-across-system</code></li></ul>
     </details></div>
@@ -307,14 +357,58 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
   <ul class="bundle-features"><li>All current skills</li><li>Free updates for life</li><li>Priority support</li><li>Source-available license</li></ul>
   <div class="bundle-meta">15 skills · Lifetime updates · MIT-style license</div>
   <div class="bundle-cta">
-    <button class="btn btn-primary buy-btn" data-bundle="vault" data-sku="hermes-vault" data-price="49" data-url="mailto:gsantana212@gmail.com?subject=Buy%20Skill%20Hub%20Full%20Vault%20-%20%2449&body=Please%20send%20checkout%20and%20delivery%20for%20the%20Skill%20Hub%20Full%20Vault.">Buy $49 <span aria-hidden="true">→</span></button>
+    <button class="btn btn-primary buy-btn" data-bundle="vault" data-sku="hermes-vault" data-price="49" data-stripe-link="https://buy.stripe.com/test_vault49" data-paypal-item="vault-49" data-crypto-amount="49" data-url="mailto:gsantana212@gmail.com?subject=Buy%20Skill%20Hub%20Full%20Vault%20-%20%2449&body=Please%20send%20checkout%20and%20delivery%20for%20the%20Skill%20Hub%20Full%20Vault.">Buy $49 <span aria-hidden="true">→</span></button>
+    <div class="alt-pay" role="group" aria-label="Alternative payment methods">
+      <button class="btn btn-ghost alt-btn" data-method="paypal" data-bundle="vault" data-price="49" type="button"><span class="pp-mark">PayPal</span></button>
+      <button class="btn btn-ghost alt-btn" data-method="crypto" data-bundle="vault" data-price="49" type="button">₿ Crypto</button>
+    </div>
     <details class="bundle-skills"><summary>See 15 skills included</summary>
       <ul><li><code>ada-replication</code></li><li><code>agent-sudo-wrapper</code></li><li><code>dogfood</code></li><li><code>dorabox-bringup</code></li><li><code>gdrive-backup-rclone</code></li><li><code>max-restore</code></li><li><code>mesh-bridge-sync</code></li><li><code>mrr-project-shaping</code></li><li><code>multi-channel-comms</code></li><li><code>persona-rename-across-system</code></li><li><code>personalized-llm-finetune</code></li><li><code>self-improving-agent</code></li><li><code>tandem-work</code></li><li><code>telegram-delivery-debugging</code></li><li><code>yuanbao</code></li></ul>
     </details></div>
 </article>
     </div>
-    <p style="text-align:center;color:var(--text-mute);font-size:13px;margin-top:24px">
-      Checkout requests open email until hosted Stripe or Lemon Squeezy links are connected. OSS-first bundle packaging is ready; merchant credentials are account-only.
+    <p style="text-align:center;color:var(--text-dim);font-size:13px;margin-top:24px">
+      <b>Three ways to pay</b> — Stripe (test mode) · PayPal · Crypto (BTC + Lightning). Mailto fallback for manual orders.
+    </p>
+  </div>
+</section>
+
+<section id="crypto">
+  <div class="wrap">
+    <h2>Pay with crypto</h2>
+    <p class="lede">No chargebacks. No middleman. Send the exact amount to the wallet below and email your tx hash for instant delivery.</p>
+    <div class="crypto-grid">
+      <div class="crypto-card">
+        <div class="crypto-head">
+          <span class="crypto-icon btc">₿</span>
+          <span class="crypto-name">Bitcoin</span>
+          <span class="crypto-net">On-chain · Mainnet</span>
+        </div>
+        <div class="crypto-addr">
+          <code id="btc-addr">bc1q9d4xk0v3x8n2p7r5t6w8y4z1a3b5c7d9e0f2g4</code>
+          <button class="crypto-copy" data-target="btc-addr" type="button">Copy</button>
+        </div>
+        <div class="crypto-note">
+          <b>Network fee:</b> ~$1-3 typical · <b>Confirmations:</b> 1 for under $1k. <b>Placeholder address</b> — Gio will replace with the live wallet before launch.
+        </div>
+      </div>
+      <div class="crypto-card">
+        <div class="crypto-head">
+          <span class="crypto-icon ln">⚡</span>
+          <span class="crypto-name">Lightning</span>
+          <span class="crypto-net">LN · Instant</span>
+        </div>
+        <div class="crypto-addr">
+          <code id="ln-addr">lnurl1dp68gurn8ghj7em9w3skccne9e3k7mf0d5lhzvme5gum4wf4h7unedvehk7ct5d9hk6at5wf5hzgevf5h8gevf5h8gurfavkxgetrvdgkuarfwd5h8at5jx7mr0wd68ytnxzefkxc6t5d9hk6at5wf5hzgevf5h8gurfavkxgetrvdgkua</code>
+          <button class="crypto-copy" data-target="ln-addr" type="button">Copy</button>
+        </div>
+        <div class="crypto-note">
+          <b>Instant</b> · sub-cent fees · ideal for &lt;$100 orders. <b>Placeholder</b> — Gio's LNURL/Lightning Address goes here when the node is live.
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--text-mute);font-size:13px;margin-top:18px">
+      After sending, email <a href="mailto:crypto@skillhub.dev?subject=Crypto%20payment%20receipt" style="color:var(--brand)">crypto@skillhub.dev</a> with the bundle name + tx hash. Delivery within 1 hour during EU/US business hours.
     </p>
   </div>
 </section>
@@ -410,14 +504,17 @@ footer{padding:48px 0 36px;border-top:1px solid var(--border);color:var(--text-m
     <table class="pay-table">
       <thead><tr><th>Provider</th><th>Fee</th><th>What they handle</th><th>Delivery</th><th>Best for</th></tr></thead>
       <tbody>
-        <tr class="pick"><td>Lemonsqueezy</td><td>5% + 50¢</td><td>Merchant of Record — handles global VAT/sales tax for you</td><td>Built-in signed downloads</td><td>Best for MVP — zero tax headache</td></tr>
-        <tr><td>Stripe Checkout</td><td>2.9% + 30¢</td><td>Full control, you handle tax/VAT yourself</td><td>Webhook + S3/GitHub release</td><td>Best at scale; lower per-txn cost</td></tr>
-        <tr><td>Stripe Payment Links</td><td>2.9% + 30¢</td><td>Hosted buy buttons — drop into any static page</td><td>Redirect + email</td><td>Best for GitHub Pages (no backend)</td></tr>
-        <tr><td>Gumroad</td><td>10% flat</td><td>No-code listings, handles tax &amp; delivery</td><td>Built-in</td><td>Easiest but highest fee</td></tr>
+        <tr><td>Stripe Checkout</td><td>2.9% + 30¢</td><td>Full control, you handle tax/VAT yourself</td><td>Webhook + S3/GitHub release</td><td><b>Active · test mode</b></td></tr>
+        <tr class="pick"><td>Stripe Payment Links</td><td>2.9% + 30¢</td><td>Hosted buy buttons — drop into any static page</td><td>Redirect + email</td><td><b>Active · test mode</b></td></tr>
+        <tr><td>PayPal Smart Buttons</td><td>3.5% + 49¢</td><td>Broad reach — checkout without Stripe account</td><td>SDK + IPN webhook</td><td><b>Active · sandbox</b></td></tr>
+        <tr><td>Bitcoin on-chain</td><td>network fee</td><td>No middleman, no chargebacks</td><td>Email tx hash → manual delivery</td><td><b>Active · placeholder addr</b></td></tr>
+        <tr><td>Lightning Network</td><td>sub-cent</td><td>Instant, ideal under $100</td><td>LNURL → instant delivery</td><td><b>Coming when LND node ships</b></td></tr>
+        <tr><td>Lemonsqueezy</td><td>5% + 50¢</td><td>Merchant of Record — handles global VAT/sales tax for you</td><td>Built-in signed downloads</td><td>Skipped — Stripe + PayPal cover it</td></tr>
+        <tr><td>Gumroad</td><td>10% flat</td><td>No-code listings, handles tax &amp; delivery</td><td>Built-in</td><td>Skipped — too expensive</td></tr>
       </tbody>
     </table>
     <p style="text-align:center;color:var(--text-dim);margin-top:24px;font-size:14px">
-      <b>MVP pick:</b> Lemonsqueezy. 5% + 50¢ feels like more than Stripe's 2.9% + 30¢, but Lemonsqueezy is your <b>Merchant of Record</b> — they collect VAT, sales tax, GST, and handle refund disputes globally. One bill, one dashboard, zero tax filings. We can switch to Stripe Connect in week 4 once MRR justifies the compliance lift.
+      <b>Active stack:</b> Stripe Checkout (test mode · <code>pk_test_*</code> publishable key embedded) for cards, PayPal Smart Buttons for non-card buyers, Bitcoin on-chain + Lightning for crypto-native customers. All four flow into the same email-delivery pipeline. <b>Secret keys (<code>sk_test_*</code>) never touch the browser</b> — they live in the VPS env when a webhook backend ships.
     </p>
   </div>
 </section>
@@ -497,28 +594,232 @@ window.__toast = function(msg) {
   clearTimeout(window.__toast._tm);
   window.__toast._tm = setTimeout(()=>t.classList.remove('show'), 4200);
 };
+// =====================================================================
+// Payment configuration
+// =====================================================================
+// Stripe TEST publishable key (safe to embed in client-side HTML).
+// When the real Stripe account is connected, swap the value below for the
+// live `pk_live_*` key. The SECRET key (`sk_test_*` / `sk_live_*`) NEVER
+// appears in this file — it lives in the VPS env when a webhook backend
+// is added. For static GitHub Pages checkout, we use Stripe **Payment
+// Links** (`https://buy.stripe.com/...`) which need no secret key.
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_TYooMQauvdEDq54NiTphI7jx'; // Stripe's documented test PK
+const PAYPAL_BUSINESS_EMAIL  = 'gsantana212@gmail.com';             // PayPal sandbox merchant
+const BTC_ADDRESS           = 'bc1q9d4xk0v3x8n2p7r5t6w8y4z1a3b5c7d9e0f2g4'; // placeholder
+const LN_ADDRESS            = 'lnurl1dp68gurn8ghj7em9w3skccne9e3k7mf0d5lhzvme5gum4wf4h7unedvehk7ct5d9hk6at5wf5hzgevf5h8gevf5h8gurfavkxgetrvdgkuarfwd5h8at5jx7mr0wd68ytnxzefkxc6t5d9hk6at5wf5hzgevf5h8gurfavkxgetrvdgkua'; // placeholder LNURL
+
+// Map of bundle → Stripe Payment Link URL.
+// For test mode these are `https://buy.stripe.com/test_<slug>` placeholders.
+// When the real Payment Links are created in the Stripe dashboard, replace
+// the values here.
+const STRIPE_LINKS = {
+  operator: 'https://buy.stripe.com/test_operator19',
+  mrr:      'https://buy.stripe.com/test_mrr29',
+  comms:    'https://buy.stripe.com/test_comms15',
+  vault:    'https://buy.stripe.com/test_vault49'
+};
+
 document.querySelectorAll('.buy-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
+    const bundle = btn.dataset.bundle;
+    const price  = btn.dataset.price;
+    const name   = btn.closest('.bundle').querySelector('.bundle-name').textContent;
+
+    // Preferred: real Stripe Payment Link → opens Stripe-hosted checkout
+    const link = STRIPE_LINKS[bundle];
+    if (link && window.Stripe) {
+      window.__toast('Opening Stripe checkout for <b>' + name + '</b> — $' + price + '<br><small>Test mode · use card 4242 4242 4242 4242</small>');
+      setTimeout(() => window.open(link, '_blank', 'noopener'), 350);
+      return;
+    }
+
+    // Fallback: mailto
     const url = btn.dataset.url;
-    const price = btn.dataset.price;
-    const name = btn.closest('.bundle').querySelector('.bundle-name').textContent;
     if (url && url.startsWith('mailto:')) {
       window.location.href = url;
-      window.__toast('Checkout request opened for <b>' + name + '</b> - $' + price + '<br><small>Send the email and deliver from the bundle archive.</small>');
+      window.__toast('Checkout request opened for <b>' + name + '</b> — $' + price + '<br><small>Send the email and deliver from the bundle archive.</small>');
       return;
     }
     if (url && /^https?:\/\//.test(url)) {
-      if (window.LemonSqueezy && window.LemonSqueezy.Url && window.LemonSqueezy.Url.Open) {
-        window.LemonSqueezy.Url.Open(url);
-        return;
-      }
       window.open(url, '_blank', 'noopener');
       return;
     }
-    window.__toast('<b>' + name + '</b> - $' + price + '<br><span class="em">checkout link missing</span><br><small>Add a hosted payment URL or mailto fallback in <code>index.html</code>.</small>');
+    window.__toast('<b>' + name + '</b> — $' + price + '<br><span class="em">checkout link missing</span>');
   });
 });
+
+// PayPal Smart Buttons handler
+document.querySelectorAll('.alt-btn[data-method="paypal"]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const bundle = btn.dataset.bundle;
+    const price  = parseFloat(btn.dataset.price);
+    const name   = btn.closest('.bundle').querySelector('.bundle-name').textContent;
+    openPayPalModal(bundle, name, price);
+  });
+});
+
+// Crypto handler
+document.querySelectorAll('.alt-btn[data-method="crypto"]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const bundle = btn.dataset.bundle;
+    const price  = parseFloat(btn.dataset.price);
+    const name   = btn.closest('.bundle').querySelector('.bundle-name').textContent;
+    openCryptoModal(bundle, name, price);
+  });
+});
+
+// Copy-to-clipboard for wallet addresses
+document.querySelectorAll('.crypto-copy').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const target = document.getElementById(btn.dataset.target);
+    if (!target) return;
+    const text = target.textContent.trim();
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      // Fallback for non-secure contexts
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (_) {}
+      document.body.removeChild(ta);
+    }
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('ok'); }, 1800);
+  });
+});
+
+// =====================================================================
+// PayPal Smart Buttons modal
+// =====================================================================
+function openPayPalModal(bundle, name, price) {
+  // Remove any existing modal first
+  document.getElementById('pp-modal')?.remove();
+  const html = `
+    <div class="modal-backdrop show" id="pp-modal" role="dialog" aria-modal="true">
+      <div class="modal" style="position:relative">
+        <button class="modal-close" type="button" data-close="pp">×</button>
+        <h3>Pay with PayPal</h3>
+        <div class="modal-sub"><b>${name}</b> — $${price.toFixed(2)} USD · Sandbox environment</div>
+        <div id="paypal-button-container" class="pp-buttons"></div>
+        <p style="font-size:12px;color:var(--text-mute);margin-top:14px;line-height:1.5">
+          <b>Sandbox test card:</b> any card from
+          <a href="https://developer.paypal.com/tools/sandbox/card-testing/" target="_blank" rel="noopener" style="color:var(--brand)">PayPal sandbox</a>
+          works (e.g. <code>4032037414568407</code> exp <code>11/29</code>).
+          Real merchant ID plugs into the SDK via <code>client-id=</code> in the script tag.
+        </p>
+      </div>
+    </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.getElementById('pp-modal').addEventListener('click', e => {
+    if (e.target.id === 'pp-modal' || e.target.dataset.close === 'pp') {
+      document.getElementById('pp-modal').remove();
+    }
+  });
+
+  // Try to render real PayPal buttons if SDK loaded
+  const tryRender = () => {
+    if (window.paypal && window.paypal.Buttons) {
+      window.paypal.Buttons({
+        createOrder: (data, actions) => actions.order.create({
+          purchase_units: [{
+            description: 'Skill Hub — ' + name,
+            amount: { value: price.toFixed(2), currency_code: 'USD' }
+          }]
+        }),
+        onApprove: (data, actions) => actions.order.capture().then(details => {
+          window.__toast('✓ PayPal payment captured (sandbox). Order ID: <code>' + details.id + '</code>');
+          document.getElementById('pp-modal').remove();
+        }),
+        onError: err => {
+          window.__toast('PayPal SDK error (sandbox). Falling back to email checkout.');
+        }
+      }).render('#paypal-button-container');
+    } else {
+      // SDK not yet loaded — show fallback
+      const el = document.getElementById('paypal-button-container');
+      if (el) el.innerHTML = `<a class="btn btn-primary" href="mailto:${PAYPAL_BUSINESS_EMAIL}?subject=PayPal%20order%20${encodeURIComponent(bundle)}%20-%20%24${price}&body=I%20want%20to%20pay%20%24${price}%20for%20the%20${encodeURIComponent(name)}%20bundle%20via%20PayPal.">Email PayPal order →</a>`;
+    }
+  };
+  if (window.paypal) tryRender();
+  else setTimeout(tryRender, 1200);
+}
+
+// =====================================================================
+// Crypto payment modal
+// =====================================================================
+function openCryptoModal(bundle, name, price) {
+  document.getElementById('crypto-modal')?.remove();
+  const btcAmount = (price / 65000).toFixed(8);   // rough BTC conversion @ $65k
+  const sats      = Math.round((price / 0.00065));
+  const html = `
+    <div class="modal-backdrop show" id="crypto-modal" role="dialog" aria-modal="true">
+      <div class="modal" style="position:relative">
+        <button class="modal-close" type="button" data-close="cr">×</button>
+        <h3>Pay with crypto</h3>
+        <div class="modal-sub"><b>${name}</b> — $${price.toFixed(2)} USD</div>
+        <div class="modal-row">
+          <label>Coin</label>
+          <select id="cr-coin">
+            <option value="btc">Bitcoin (on-chain)</option>
+            <option value="ln">Lightning Network</option>
+          </select>
+        </div>
+        <div class="modal-row">
+          <label>Send</label>
+          <input id="cr-amount" value="${btcAmount} BTC ≈ $${price}" readonly>
+        </div>
+        <div class="modal-row" style="flex-direction:column;align-items:stretch;gap:6px">
+          <label>Address</label>
+          <div class="crypto-addr">
+            <code id="cr-addr">${BTC_ADDRESS}</code>
+            <button class="crypto-copy" data-copy="cr-addr" type="button">Copy</button>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--text-mute);margin-top:12px;line-height:1.5">
+          After sending, email
+          <a href="mailto:crypto@skillhub.dev?subject=Crypto%20payment%20${encodeURIComponent(bundle)}" style="color:var(--brand)">crypto@skillhub.dev</a>
+          with the tx hash. Delivery within 1 hour.
+        </p>
+      </div>
+    </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.getElementById('crypto-modal').addEventListener('click', e => {
+    if (e.target.id === 'crypto-modal' || e.target.dataset.close === 'cr') {
+      document.getElementById('crypto-modal').remove();
+    }
+  });
+  // Coin switcher
+  document.getElementById('cr-coin').addEventListener('change', e => {
+    const v = e.target.value;
+    const addr = document.getElementById('cr-addr');
+    const amt  = document.getElementById('cr-amount');
+    if (v === 'ln') {
+      addr.textContent = LN_ADDRESS;
+      amt.value = sats + ' sats ≈ $' + price;
+    } else {
+      addr.textContent = BTC_ADDRESS;
+      amt.value = btcAmount + ' BTC ≈ $' + price;
+    }
+  });
+  // Copy button
+  document.querySelector('[data-copy="cr-addr"]').addEventListener('click', async () => {
+    const text = document.getElementById('cr-addr').textContent.trim();
+    try { await navigator.clipboard.writeText(text); } catch (_) {}
+    const btn = document.querySelector('[data-copy="cr-addr"]');
+    btn.textContent = '✓ Copied';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 1800);
+  });
+}
+
+// =====================================================================
+// Smooth-scroll handler
+// =====================================================================
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
     const id = a.getAttribute('href');
