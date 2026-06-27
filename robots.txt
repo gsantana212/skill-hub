@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /downloads/
 
-Sitemap: https://gsantana212.github.io/skill-hub/sitemap.xml
+Sitemap: https://skillhub.shop/sitemap.xml

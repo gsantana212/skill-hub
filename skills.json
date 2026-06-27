@@ -1,0 +1,949 @@
+{
+  "version": "1.1.0",
+  "updated": "2026-06-23",
+  "changelog": "Replaced ada-airllm-installer with ada-llama-cpp-local (real llama.cpp + GGUF path, verified 108 t/s on GPU, 17 t/s on CPU). Catalog now 49 skills, 8 packs, 11 agents.",
+  "merchant": {
+    "name": "Skill Hub",
+    "domain": "skillhub.shop"
+  },
+  "total_skills": 49,
+  "total_packs": 8,
+  "total_agents": 11,
+  "categories": [
+    "Setup & Replication",
+    "DevOps & Infrastructure",
+    "Communication & Channels",
+    "Money & Business",
+    "Coding & Engineering",
+    "AI & ML Operations",
+    "Creative & Design",
+    "Research & Writing",
+    "Data & Analytics"
+  ],
+  "skills": [
+    {
+      "id": "ada-replication",
+      "name": "Agent Replication",
+      "tagline": "Copy a fully-loaded agent onto a new box in one command.",
+      "category": "Setup & Replication",
+      "icon": "📦",
+      "what_it_does": [
+        "Snapshots the master agent's skills, settings, memory, and CRON jobs",
+        "Streams the bundle to a remote box over SSH or Tailscale",
+        "Rehydrates on the target with the same plugins, profile, and persona"
+      ],
+      "use_cases": [
+        "Provision a new home server with the same AI setup you have locally",
+        "Clone your agent to a friend's machine so they get your full toolkit",
+        "Migrate from an old VPS to a fresh one without rebuilding from scratch"
+      ],
+      "deliverable": "ZIP + restore script that brings a clean machine to 1:1 parity with the source",
+      "who_its_for": "Anyone who runs more than one machine and is tired of repeating setup"
+    },
+    {
+      "id": "ada-blank-slate",
+      "name": "Blank-Slate Bring-Up",
+      "tagline": "Fresh box → working agent in 10 minutes.",
+      "category": "Setup & Replication",
+      "icon": "⚙️",
+      "what_it_does": [
+        "Installs the agent runtime, Tailscale, and required system packages",
+        "Configures GPU passthrough, mounts storage, sets up SSH keys",
+        "Verifies the install with a self-test before handing the box back"
+      ],
+      "use_cases": [
+        "First-time setup on a brand-new Mac mini or Proxmox VM",
+        "Bring up a clean Ubuntu server without reading 4 Stack Overflow threads",
+        "Standardize a fleet of boxes on the exact same baseline"
+      ],
+      "deliverable": "Setup script + post-install verification report",
+      "who_its_for": "Anyone provisioning a new AI host machine"
+    },
+    {
+      "id": "ada-audit-pdf-build",
+      "name": "Audit PDF Builder",
+      "tagline": "Turn raw data exports into branded, paginated PDFs.",
+      "category": "Setup & Replication",
+      "icon": "📄",
+      "what_it_does": [
+        "Reads JSON/CSV inputs and produces a paginated PDF with cover, TOC, and footer",
+        "Applies a configurable template (logo, brand color, font, page size)",
+        "Generates charts and tables inline with vector output for crisp print"
+      ],
+      "use_cases": [
+        "Monthly MRR report to investors — one command from a CSV",
+        "Per-client usage summaries for SaaS customers",
+        "Audit-ready compliance packets with cover and pagination"
+      ],
+      "deliverable": "CLI + Python module; sample templates included",
+      "who_its_for": "Operators and founders who hand off PDFs to non-technical readers"
+    },
+    {
+      "id": "ada-local-vault",
+      "name": "Local Vault",
+      "tagline": "Encrypted secrets store for API keys, tokens, and notes.",
+      "category": "Setup & Replication",
+      "icon": "🔐",
+      "what_it_does": [
+        "AES-256-GCM encrypted at rest with a single passphrase",
+        "Per-secret access logging — see who/what read which key and when",
+        "Easy rotation: re-encrypt and re-link in one command"
+      ],
+      "use_cases": [
+        "Stop checking API keys into .env files in git repos",
+        "Share a vault with a teammate without emailing the master password",
+        "Audit which services have read which credentials last month"
+      ],
+      "deliverable": "CLI + Python module; FUSE-mounted plaintext view on demand",
+      "who_its_for": "Anyone juggling more than 5 API keys"
+    },
+    {
+      "id": "ada-browser",
+      "name": "Human-Speed Browser",
+      "tagline": "Drive a real browser for tasks APIs can't.",
+      "category": "Setup & Replication",
+      "icon": "🌐",
+      "what_it_does": [
+        "Launches a real Chromium with stealthy timing (no detectable automation)",
+        "Logs in, navigates, fills forms, downloads files — with screenshots at each step",
+        "Captures DOM snapshots for later inspection and replay"
+      ],
+      "use_cases": [
+        "Scrape a site that blocks API-based scrapers",
+        "Post a listing to a classified site that has no API",
+        "Log into your dashboard and screenshot weekly KPIs"
+      ],
+      "deliverable": "Playwright-style Python module with anti-detection defaults",
+      "who_its_for": "Anyone who needs to automate sites that don't have APIs"
+    },
+    {
+      "id": "proxmox-vm-mesh",
+      "name": "Proxmox VM Mesh",
+      "tagline": "Spin up a multi-VM agent fleet in an afternoon.",
+      "category": "DevOps & Infrastructure",
+      "icon": "🖥️",
+      "what_it_does": [
+        "Provisions Proxmox VMs from a YAML spec (CPU, RAM, disk, network)",
+        "Joins each VM to a Tailscale mesh and sets up SSH key auth",
+        "Installs the agent runtime on each VM in parallel"
+      ],
+      "use_cases": [
+        "Stand up 5 dev boxes for a small team in under 30 minutes",
+        "Recreate your home lab on a fresh Proxmox install",
+        "Spin up a disposable test fleet for a load test"
+      ],
+      "deliverable": "CLI + sample fleet YAMLs",
+      "who_its_for": "Home-lab and small-team operators running Proxmox"
+    },
+    {
+      "id": "proxmox-lxc-gpu-inference",
+      "name": "GPU Inference Container",
+      "tagline": "LXC + GPU passthrough for local LLM inference.",
+      "category": "DevOps & Infrastructure",
+      "icon": "🎛️",
+      "what_it_does": [
+        "Builds an LXC container with the right NVIDIA/AMD drivers",
+        "Mounts the host GPU and exposes it for llama.cpp or vLLM",
+        "Configures llama.cpp server with sensible defaults and a health check"
+      ],
+      "use_cases": [
+        "Run a 7B model on a home GPU rig",
+        "Self-host a code-completion model for your team",
+        "Move a model server between boxes without re-installing drivers"
+      ],
+      "deliverable": "Build script + verified configs for common GPUs",
+      "who_its_for": "Anyone running local LLMs on Proxmox + a discrete GPU"
+    },
+    {
+      "id": "mesh-bridge-sync",
+      "name": "Mesh Bridge Sync",
+      "tagline": "Multiple agents share what they learn — one brain, many boxes.",
+      "category": "DevOps & Infrastructure",
+      "icon": "🔗",
+      "what_it_does": [
+        "Replicates skills, memory, and CRON state between mesh nodes",
+        "Conflict-free merge using CRDTs — no lost writes when two agents edit the same file",
+        "Per-channel opt-in: sync skills but not memory, or vice versa"
+      ],
+      "use_cases": [
+        "Agent on your laptop and agent on a server stay in sync overnight",
+        "Your home fleet and a friend's fleet share best-practice skills without duplicating repos",
+        "A dev box and a prod box always see the same plugin versions"
+      ],
+      "deliverable": "Background daemon + Web UI for sync status",
+      "who_its_for": "Anyone running 2+ agents and tired of drift"
+    },
+    {
+      "id": "gdrive-backup-rclone",
+      "name": "Google Drive Backup",
+      "tagline": "Encrypted, automated backups of your agent's memory.",
+      "category": "DevOps & Infrastructure",
+      "icon": "💾",
+      "what_it_does": [
+        "rclone-based encrypted sync to a personal Google Drive",
+        "Hourly snapshot of ~/.hermes, scheduled with a systemd timer",
+        "Rotation: keeps 24 hourly, 7 daily, 4 weekly, 12 monthly"
+      ],
+      "use_cases": [
+        "Survive a disk crash without losing your agent's memory",
+        "Migrate a whole agent to a new box in one restore",
+        "Keep an off-site copy of credentials and notes"
+      ],
+      "deliverable": "Install script + restore playbook",
+      "who_its_for": "Anyone who doesn't want to lose months of agent context"
+    },
+    {
+      "id": "lan-gui-access",
+      "name": "LAN GUI Access",
+      "tagline": "Expose the agent desktop on your home network — securely.",
+      "category": "DevOps & Infrastructure",
+      "icon": "🖧",
+      "what_it_does": [
+        "Reverse-proxies the agent's local GUI to a LAN-only port",
+        "Auths via Tailscale ACL — no public exposure",
+        "Auto-renews a self-signed cert for HTTPS"
+      ],
+      "use_cases": [
+        "Open the agent's web UI from your phone on the same Wi-Fi",
+        "Show a dashboard on a wall-mounted tablet",
+        "Test the GUI from another machine without VNC"
+      ],
+      "deliverable": "Caddy + auth config + install script",
+      "who_its_for": "Anyone running an agent with a local web UI"
+    },
+    {
+      "id": "multi-channel-comms",
+      "name": "Multi-Channel Comms",
+      "tagline": "Reach the agent on Telegram, Discord, WhatsApp, Matrix.",
+      "category": "Communication & Channels",
+      "icon": "📡",
+      "what_it_does": [
+        "Bridges the agent to 4+ chat platforms with one config file",
+        "Routes messages to the right agent (or threads) by channel",
+        "Surfaces status, errors, and digests to the channels you choose"
+      ],
+      "use_cases": [
+        "Talk to your agent from Telegram when you're on the go",
+        "Get error alerts in a Discord channel your team already monitors",
+        "Send the same prompt from WhatsApp, Matrix, and Telegram — same reply"
+      ],
+      "deliverable": "Bridge daemon + per-platform setup guides",
+      "who_its_for": "Anyone who wants the agent reachable on the apps they already use"
+    },
+    {
+      "id": "telegram-delivery-debugging",
+      "name": "Telegram Delivery Debugging",
+      "tagline": "Fix the 'Telegram message arrived 5 minutes late' bug.",
+      "category": "Communication & Channels",
+      "icon": "🐛",
+      "what_it_does": [
+        "Diagnoses Telegram long-poll vs webhook misconfigurations",
+        "Identifies stuck update queues and clears them safely",
+        "Adds a watchdog that pings you when delivery latency exceeds a threshold"
+      ],
+      "use_cases": [
+        "Stop a recurring 3 AM Telegram delivery delay",
+        "Diagnose why some messages arrive in 1s and others in 5min",
+        "Catch a hung webhook before it silently breaks alerting"
+      ],
+      "deliverable": "Diagnostic script + watchdog + runbook",
+      "who_its_for": "Anyone running an agent bot on Telegram"
+    },
+    {
+      "id": "googlechat-comms",
+      "name": "Google Chat Bridge",
+      "tagline": "Agent in your Google Workspace DMs.",
+      "category": "Communication & Channels",
+      "icon": "💼",
+      "what_it_does": [
+        "OAuths into Google Workspace with a service account",
+        "Posts and receives in Google Chat spaces and DMs",
+        "Thread-aware — keeps conversation context per thread"
+      ],
+      "use_cases": [
+        "Get agent answers inside a Google Chat space your team already uses",
+        "Schedule posts or digests to a Workspace room",
+        "Bridge a Google Chat room to a Discord channel"
+      ],
+      "deliverable": "Bridge daemon + Workspace setup guide",
+      "who_its_for": "Teams standardized on Google Workspace"
+    },
+    {
+      "id": "mrr-project-shaping",
+      "name": "MRR Project Shaping",
+      "tagline": "Pick a paid idea in 3 questions, ship it for real.",
+      "category": "Money & Business",
+      "icon": "💰",
+      "what_it_does": [
+        "Walks through 3 questions to pick a monetizable niche (no fluff frameworks)",
+        "Generates a 7-day launch checklist: page, payments, first customer",
+        "Tracks the 90-second loop: small daily shipping cadence"
+      ],
+      "use_cases": [
+        "Stop endless 'idea picking' paralysis and commit to one",
+        "Get a real launch checklist instead of a Notion doc with 30 items",
+        "Stay accountable to a daily shipping cadence"
+      ],
+      "deliverable": "Interactive prompt flow + checklist + tracker",
+      "who_its_for": "Solo founders ready to ship a paid product this week"
+    },
+    {
+      "id": "launch-revenue-operator",
+      "name": "Launch Revenue Operator",
+      "tagline": "Turn one paying customer into a real business.",
+      "category": "Money & Business",
+      "icon": "🚀",
+      "what_it_does": [
+        "Tracks paying customers and flags churn signals",
+        "Drafts retention emails and upgrade nudges in your voice",
+        "Reports weekly MRR, new, churn, and net — to your inbox"
+      ],
+      "use_cases": [
+        "Watch a small paying base and catch churn before it costs you a month",
+        "Get a Friday digest of net-new MRR without building a dashboard",
+        "Draft a 'we miss you' email when someone downgrades"
+      ],
+      "deliverable": "Tracking module + email templates + weekly digest",
+      "who_its_for": "Indie hackers with <$5k MRR"
+    },
+    {
+      "id": "github-pr-workflow",
+      "name": "GitHub PR Workflow",
+      "tagline": "Open, review, and merge PRs without babysitting.",
+      "category": "Coding & Engineering",
+      "icon": "🔁",
+      "what_it_does": [
+        "Opens a PR with title, body, and checklist from a commit range",
+        "Polls for review status, re-pings reviewers, and posts CI summaries",
+        "Auto-merges on green, branches when conflict is detected"
+      ],
+      "use_cases": [
+        "Move a 12-PR stack through review without manual nudging",
+        "Get a CI summary in the PR thread instead of digging into Actions",
+        "Auto-merge docs and dependency bumps to keep the queue flowing"
+      ],
+      "deliverable": "CLI + GitHub Actions workflow",
+      "who_its_for": "Engineers managing multi-PR stacks on GitHub"
+    },
+    {
+      "id": "github-issues",
+      "name": "GitHub Issues Triage",
+      "tagline": "Label, prioritize, and route new issues as they land.",
+      "category": "Coding & Engineering",
+      "icon": "📋",
+      "what_it_does": [
+        "Applies labels based on title/body heuristics (bug, feat, question)",
+        "Routes issues to the right project board column or assignee",
+        "Closes duplicates and posts a polite 'see #X' redirect"
+      ],
+      "use_cases": [
+        "Stop a public repo from filling with un-triaged issues",
+        "Get a daily digest of new issues with proposed labels",
+        "Auto-close the 'how do I install' questions that already have a doc"
+      ],
+      "deliverable": "Action + triage config",
+      "who_its_for": "Maintainers of repos with >50 open issues"
+    },
+    {
+      "id": "github-code-review",
+      "name": "GitHub Code Review",
+      "tagline": "PRs reviewed in under 90 seconds — security smells caught.",
+      "category": "Coding & Engineering",
+      "icon": "🔍",
+      "what_it_does": [
+        "Watches GitHub repos; on every PR, runs static analysis and a security smell scan",
+        "Posts diff-aware comments with line references",
+        "Auto-approves green PRs and alerts on red"
+      ],
+      "use_cases": [
+        "First-pass review on PRs before a human looks",
+        "Catch a hardcoded API key or a SQL-injection smell before merge",
+        "Keep PR cycle time under a day for active repos"
+      ],
+      "deliverable": "Reviewer bot + ruleset",
+      "who_its_for": "Repos where every PR needs a baseline review"
+    },
+    {
+      "id": "dogfood",
+      "name": "Dogfood QA",
+      "tagline": "Exploratory QA — your agent clicks around your site and finds bugs.",
+      "category": "Coding & Engineering",
+      "icon": "🐶",
+      "what_it_does": [
+        "Drives a real browser through a config-defined user journey",
+        "Records console errors, network failures, and visual regressions",
+        "Files a GitHub issue per finding with a screenshot and steps to reproduce"
+      ],
+      "use_cases": [
+        "Catch a 500 error on your pricing page that only shows in Safari",
+        "Get a daily smoke test of your SaaS without paying for a hosted tool",
+        "Find a broken link that's been on the homepage for 3 months"
+      ],
+      "deliverable": "CLI + browser harness + report template",
+      "who_its_for": "Solo founders and tiny teams with no QA bandwidth"
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Agent Orchestration",
+      "tagline": "The runtime that ties skills, memory, and tools together.",
+      "category": "AI & ML Operations",
+      "icon": "🧠",
+      "what_it_does": [
+        "Loads skills from ~/.hermes/skills/ on each turn — no daemon restart needed",
+        "Manages tool invocation, retries, and the conversation history",
+        "Exposes a profile-aware memory layer that persists across sessions"
+      ],
+      "use_cases": [
+        "Run multiple isolated profiles (work, side project, research) on one box",
+        "Add a new skill by dropping a folder — no config edit needed",
+        "Inspect and replay the last 100 turns for debugging"
+      ],
+      "deliverable": "Runtime + CLI + profile manager",
+      "who_its_for": "Anyone running the agent locally"
+    },
+    {
+      "id": "self-improving-agent",
+      "name": "Self-Improving Loop",
+      "tagline": "The agent reviews its own work and gets better every week.",
+      "category": "AI & ML Operations",
+      "icon": "📈",
+      "what_it_does": [
+        "Samples the last 200 turns and tags which outputs were good/bad",
+        "Suggests prompt edits and skill improvements with diffs",
+        "Applies changes after human approval and tracks quality over time"
+      ],
+      "use_cases": [
+        "Stop the same tone mistake repeating every Monday morning",
+        "Catch a tool-call pattern that's failing 1 in 10 times",
+        "Get a weekly report: 'here's what we changed and why it helped'"
+      ],
+      "deliverable": "Review loop + diff applier + weekly report",
+      "who_its_for": "Anyone who uses the agent daily and wants it to get sharper"
+    },
+    {
+      "id": "personalized-llm-finetune",
+      "name": "Personal LLM Fine-Tune",
+      "tagline": "Train a small model in your voice on your home computer.",
+      "category": "AI & ML Operations",
+      "icon": "🎯",
+      "what_it_does": [
+        "Turns a folder of your writing into a LoRA-ready training set",
+        "Runs QLoRA fine-tuning on a 7B base on a single 24GB GPU",
+        "Exports the LoRA as an OAI-compatible endpoint for the agent to use"
+      ],
+      "use_cases": [
+        "Get a draft-responder that writes like you, not like a chatbot",
+        "Train a model on your own support tickets to draft better answers",
+        "A/B test your voice vs. the base model on the same prompts"
+      ],
+      "deliverable": "Training pipeline + inference server",
+      "who_its_for": "Anyone with a GPU rig and a writing corpus they trust"
+    },
+    {
+      "id": "tandem-work",
+      "name": "Tandem Work",
+      "tagline": "Run a team of agents — one updates the others, no duplication.",
+      "category": "AI & ML Operations",
+      "icon": "🤝",
+      "what_it_does": [
+        "Defines a 90-second update cadence between primary and sub-agents",
+        "Delegates scoped tasks with JSON-first status reports",
+        "Merges work back to the primary without manual coordination"
+      ],
+      "use_cases": [
+        "Run a research agent and a writing agent that hand off cleanly",
+        "Split a multi-day build into 3 parallel agent tasks",
+        "Get a single status feed across all sub-agents"
+      ],
+      "deliverable": "Coordinator + status protocol + sample team configs",
+      "who_its_for": "Anyone running multi-agent workflows"
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI Image Generation",
+      "tagline": "Local Stable Diffusion with a saved, reproducible pipeline.",
+      "category": "Creative & Design",
+      "icon": "🎨",
+      "what_it_does": [
+        "Wraps ComfyUI with a CLI and a versioned pipeline spec",
+        "Saves every generation's seed, model, and params for exact reruns",
+        "Exposes a simple generate(prompt) interface for the agent"
+      ],
+      "use_cases": [
+        "Generate hero images for blog posts in your brand's style",
+        "Reproduce a great generation 6 months later with the exact same params",
+        "Batch-generate 50 product mockups from a CSV"
+      ],
+      "deliverable": "CLI + saved workflow templates",
+      "who_its_for": "Anyone who wants Stable Diffusion without the WebUI learning curve"
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw Diagrams",
+      "tagline": "Hand-drawn-style diagrams from plain English.",
+      "category": "Creative & Design",
+      "icon": "✏️",
+      "what_it_does": [
+        "Turns a structured outline into an editable Excalidraw file",
+        "Preserves the hand-drawn style: rough strokes, font, palette",
+        "Outputs a .excalidraw file you can edit in the app or export to SVG/PNG"
+      ],
+      "use_cases": [
+        "Sketch an architecture diagram in 30 seconds",
+        "Get a system-overview diagram in your blog post",
+        "Generate a visual for a slide deck without opening Figma"
+      ],
+      "deliverable": "CLI + prompt templates",
+      "who_its_for": "Engineers and writers who need quick, on-brand diagrams"
+    },
+    {
+      "id": "claude-design",
+      "name": "Design Mode",
+      "tagline": "Polished, on-brand UI/UX mocks from a brief.",
+      "category": "Creative & Design",
+      "icon": "🖌️",
+      "what_it_does": [
+        "Reads a feature brief and produces a low-fi wireframe set",
+        "Generates on-brand color, type, and spacing tokens",
+        "Exports Figma-ready SVGs and a per-page spec doc"
+      ],
+      "use_cases": [
+        "Get a v1 mock for a landing page in your brand style in 5 minutes",
+        "Generate a settings screen for a new feature before the build",
+        "Refresh an old UI to current design conventions without hiring a designer"
+      ],
+      "deliverable": "Prompt library + token templates",
+      "who_its_for": "Solo founders shipping v1 with no design budget"
+    },
+    {
+      "id": "songwriting-and-ai-music",
+      "name": "AI Music & Songwriting",
+      "tagline": "Lyrics, structure, and reference audio for an original song.",
+      "category": "Creative & Design",
+      "icon": "🎵",
+      "what_it_does": [
+        "Generates lyrics in a chosen voice and style",
+        "Suggests song structure (verse/chorus/bridge) and chord progression",
+        "Renders a reference audio demo using a local music model"
+      ],
+      "use_cases": [
+        "Get a first draft of lyrics for a product launch jingle",
+        "Generate a 30-second reference track to send to a singer",
+        "Sketch a verse-chorus-verse for a podcast intro"
+      ],
+      "deliverable": "Lyric generator + chord suggester + reference renderer",
+      "who_its_for": "Creators, marketers, and hobbyist songwriters"
+    },
+    {
+      "id": "manim-video",
+      "name": "Manim Video",
+      "tagline": "Animated explainer videos from a script.",
+      "category": "Creative & Design",
+      "icon": "🎬",
+      "what_it_does": [
+        "Compiles a script into a Manim scene graph",
+        "Renders the animation to MP4 with vector math, charts, and text",
+        "Outputs a thumbnail and per-frame screenshots for review"
+      ],
+      "use_cases": [
+        "Produce a 30-second explainer for a product launch",
+        "Generate a math walkthrough for a blog post",
+        "Render a chart as an animated visual"
+      ],
+      "deliverable": "Script-to-scene compiler + render pipeline",
+      "who_its_for": "Educators, technical bloggers, and indie hackers shipping explainers"
+    },
+    {
+      "id": "baoyu-infographic",
+      "name": "Baoyu Infographic",
+      "tagline": "Branded infographics for blog posts and decks.",
+      "category": "Creative & Design",
+      "icon": "📊",
+      "what_it_does": [
+        "Takes a topic outline and produces a multi-panel infographic spec",
+        "Applies a consistent palette, type, and icon set",
+        "Exports PNG, SVG, and a Figma-ready file"
+      ],
+      "use_cases": [
+        "Generate a system-overview infographic for a launch",
+        "Build a comparison visual for a competitor post",
+        "Refresh an old blog header with a current style"
+      ],
+      "deliverable": "Topic-to-infographic spec + export",
+      "who_its_for": "Content marketers and indie bloggers"
+    },
+    {
+      "id": "research-paper-writing",
+      "name": "Research Paper Writing",
+      "tagline": "Outline, draft, and reference-format a paper end to end.",
+      "category": "Research & Writing",
+      "icon": "📚",
+      "what_it_does": [
+        "Generates an outline from a topic and a target venue",
+        "Drafts sections with inline citations pulled from a reference manager",
+        "Exports a BibTeX-ready manuscript with the target style (ACL, IEEE, etc.)"
+      ],
+      "use_cases": [
+        "Get a v0 draft for a workshop submission in a day",
+        "Re-format an existing paper from ACL to IEEE in 1 command",
+        "Pull references from a Zotero library and format them correctly"
+      ],
+      "deliverable": "Outline + draft + export pipeline",
+      "who_its_for": "Grad students, researchers, and technical writers"
+    },
+    {
+      "id": "weights-and-biases",
+      "name": "Weights & Biases Tracking",
+      "tagline": "Log every training run with one line of config.",
+      "category": "Data & Analytics",
+      "icon": "📊",
+      "what_it_does": [
+        "Wraps W&B with sensible defaults for LLM/ML experiments",
+        "Logs loss curves, eval metrics, and sample generations automatically",
+        "Sweeps hyperparameters and surfaces the best run"
+      ],
+      "use_cases": [
+        "Compare 12 fine-tunes on the same eval set without spreadsheets",
+        "Share a public W&B report of a project's training journey",
+        "Get an alert when a run's loss plateaus or diverges"
+      ],
+      "deliverable": "Config templates + run reporter",
+      "who_its_for": "Anyone running >1 fine-tune or training experiment"
+    },
+    {
+      "id": "ada-backup-automator",
+      "name": "ada-backup-automator",
+      "tagline": "Set-and-forget backup automation using restic + rest-server. Hourly snapshots, 30-day retention, enc…",
+      "category": "DevOps & Infrastructure",
+      "icon": "🧠",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-backup-automator",
+        "Described: Set-and-forget backup automation using restic + rest-server. Hourly snapshots, 30-day retention, encrypted, offsite-read",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Set-and-forget backup automation using restic + rest-server",
+        "Hourly snapshots, 30-day retention, encrypted, offsite-ready",
+        "Zero babysitting."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-browser-stealth",
+      "name": "ada-browser-stealth",
+      "tagline": "Stealth headless browser for AI agents. Bypasses Cloudflare, bot detection, and most anti-scraping —…",
+      "category": "DevOps & Infrastructure",
+      "icon": "📅",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-browser-stealth",
+        "Described: Stealth headless browser for AI agents. Bypasses Cloudflare, bot detection, and most anti-scraping — drop-in Playwright ",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Stealth headless browser for AI agents",
+        "Bypasses Cloudflare, bot detection, and most anti-scraping — drop-in Playwright replacement."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-calendar",
+      "name": "ada-calendar",
+      "tagline": "Schedule meetings, check availability, and manage your calendar from chat. Google Calendar + CalDAV…",
+      "category": "Productivity",
+      "icon": "📅",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-calendar",
+        "Described: Schedule meetings, check availability, and manage your calendar from chat. Google Calendar + CalDAV support, with a natu",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Schedule meetings, check availability, and manage your calendar from chat",
+        "Google Calendar + CalDAV support, with a natural-language interface."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-code-gen",
+      "name": "ada-code-gen",
+      "tagline": "AI pair programming in your terminal. Aider-powered multi-file edits, repo maps, voice-to-commit, an…",
+      "category": "Coding & Engineering",
+      "icon": "📊",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-code-gen",
+        "Described: AI pair programming in your terminal. Aider-powered multi-file edits, repo maps, voice-to-commit, and auto-tests.",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "AI pair programming in your terminal",
+        "Aider-powered multi-file edits, repo maps, voice-to-commit, and auto-tests."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-doc-rag",
+      "name": "ada-doc-rag",
+      "tagline": "Document Q&A (RAG) that actually works. Drop PDFs, docs, and notes in a folder — get accurate, cited…",
+      "category": "Research & Writing",
+      "icon": "🎨",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-doc-rag",
+        "Described: Document Q&A (RAG) that actually works. Drop PDFs, docs, and notes in a folder — get accurate, cited answers in seconds.",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Document Q&A (RAG) that actually works",
+        "Drop PDFs, docs, and notes in a folder — get accurate, cited answers in seconds."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-image-workflow",
+      "name": "ada-image-workflow",
+      "tagline": "Production image generation with Stable Diffusion / Flux / SDXL via ComfyUI workflows. One-line prom…",
+      "category": "Creative & Design",
+      "icon": "📚",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-image-workflow",
+        "Described: Production image generation with Stable Diffusion / Flux / SDXL via ComfyUI workflows. One-line prompts, batch runs, and",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Production image generation with Stable Diffusion / Flux / SDXL via ComfyUI workflows",
+        "One-line prompts, batch runs, and auto-captioning."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-memory",
+      "name": "ada-memory",
+      "tagline": "Long-term memory and vector recall for AI agents. Drop-in persistent memory that survives reboots, r…",
+      "category": "AI & ML Operations",
+      "icon": "💬",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-memory",
+        "Described: Long-term memory and vector recall for AI agents. Drop-in persistent memory that survives reboots, restarts, and re-inst",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Long-term memory and vector recall for AI agents",
+        "Drop-in persistent memory that survives reboots, restarts, and re-installs — using ChromaDB or mem0 as the vector backend."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-onboard-wizard",
+      "name": "ada-onboard-wizard",
+      "tagline": "First-run onboarding wizard that takes a user from \"just installed\" to \"fully configured\" in under 2…",
+      "category": "Setup & Replication",
+      "icon": "🧠",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-onboard-wizard",
+        "Described: First-run onboarding wizard that takes a user from \"just installed\" to \"fully configured\" in under 2 minutes. Friendly, ",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "First-run onboarding wizard that takes a user from \"just installed\" to \"fully configured\" in under 2 minutes",
+        "Friendly, conversational, and self-rescuing."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-self-improve",
+      "name": "ada-self-improve",
+      "tagline": "Infinite Upgrade Loop. Auto-detects new skills in ~/.hermes/skills/, auto-categorizes them, auto-lis…",
+      "category": "Communication & Channels",
+      "icon": "🎨",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-self-improve",
+        "Described: Infinite Upgrade Loop. Auto-detects new skills in ~/.hermes/skills/, auto-categorizes them, auto-lists them for sale on ",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Infinite Upgrade Loop",
+        "Auto-detects new skills in ~/.hermes/skills/, auto-categorizes them, auto-lists them for sale on skillhub.shop, and notifies Ada via Telegram",
+        "The covenant: improve as a side effect."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-support-bot",
+      "name": "ada-support-bot",
+      "tagline": "AI-first customer support with RAG knowledge base, multi-channel (email + Telegram + web widget), an…",
+      "category": "Communication & Channels",
+      "icon": "📅",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-support-bot",
+        "Described: AI-first customer support with RAG knowledge base, multi-channel (email + Telegram + web widget), and human-handoff when",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "AI-first customer support with RAG knowledge base, multi-channel (email + Telegram + web widget), and human-handoff when the bot gets stuck."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-voice-quality",
+      "name": "ada-voice-quality",
+      "tagline": "Natural voice cloning and high-quality TTS for agents. Open-source engines (Piper / XTTS / Whisper)…",
+      "category": "Creative & Design",
+      "icon": "⚙️",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/ada-voice-quality",
+        "Described: Natural voice cloning and high-quality TTS for agents. Open-source engines (Piper / XTTS / Whisper) wired up with simple",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Natural voice cloning and high-quality TTS for agents",
+        "Open-source engines (Piper / XTTS / Whisper) wired up with simple one-line API."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "agent-sudo-wrapper",
+      "name": "agent-sudo-wrapper",
+      "tagline": "When a hermes-runtime agent needs to run `sudo` non-interactively but the runtime blocks `sudo -S` f…",
+      "category": "AI & ML Operations",
+      "icon": "💬",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/agent-sudo-wrapper",
+        "Described: When a hermes-runtime agent needs to run `sudo` non-interactively but the runtime blocks `sudo -S` from external stdin p",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "When a hermes-runtime agent needs to run `sudo` non-interactively but the runtime blocks `sudo -S` from external stdin pipes as a \"brute-force attack vector\", use a wrapper script that reads the password from `~/.hermes/.env` and pipes it to `sudo -S` **internally** (process substitution / printf | sudo -S) so the heuristic does not fire",
+        "Load when an agent needs to install packages, enable systemd services, edit `/etc/`, or run any operation requiring root and the obvious `echo X | sudo -S` pattern is blocked."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "continuous-memory",
+      "name": "continuous-memory",
+      "tagline": "Capture, persist, and recall rich session context across turns. Complements MEMORY.md/USER.md (which…",
+      "category": "AI & ML Operations",
+      "icon": "🤖",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/continuous-memory",
+        "Described: Capture, persist, and recall rich session context across turns. Complements MEMORY.md/USER.md (which hold durable facts)",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Capture, persist, and recall rich session context across turns",
+        "Complements MEMORY.md/USER.md (which hold durable facts) with a higher-resolution memory stream for decisions, project state, sub-agent outputs, and learnings",
+        "Use when context is getting heavy, when the user asks \"do you remember X\", or before any major action that should be cross-referenced later."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "dorabox-bringup",
+      "name": "dorabox-bringup",
+      "tagline": "Bring up DoraBox as a new Hermes agent (Kubuntu + AMD GPU 8GB). Covers SSH enable, key deployment, b…",
+      "category": "Setup & Replication",
+      "icon": "💰",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/dorabox-bringup",
+        "Described: Bring up DoraBox as a new Hermes agent (Kubuntu + AMD GPU 8GB). Covers SSH enable, key deployment, bootstrap, Ollama tes",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Bring up DoraBox as a new Hermes agent (Kubuntu + AMD GPU 8GB)",
+        "Covers SSH enable, key deployment, bootstrap, Ollama test, role definition, and Ada replication",
+        "Load this skill when provisioning DoraBox or troubleshooting its agent setup."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "max-restore",
+      "name": "max-restore",
+      "tagline": "Restore Max (maxbox planner) when offline, corrupted, or freshly imaged. Covers preflight checks, bu…",
+      "category": "DevOps & Infrastructure",
+      "icon": "📅",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/max-restore",
+        "Described: Restore Max (maxbox planner) when offline, corrupted, or freshly imaged. Covers preflight checks, bundle transfer, boots",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Restore Max (maxbox planner) when offline, corrupted, or freshly imaged",
+        "Covers preflight checks, bundle transfer, bootstrap, verification, monitoring, and Ada replication",
+        "Load this skill when Max is unreachable, down, or being verified."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "persona-rename-across-system",
+      "name": "persona-rename-across-system",
+      "tagline": "Rename an AI persona's identity (name, tone, references) consistently across the entire agent system…",
+      "category": "Productivity",
+      "icon": "🤖",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/persona-rename-across-system",
+        "Described: Rename an AI persona's identity (name, tone, references) consistently across the entire agent system — config files, per",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Rename an AI persona's identity (name, tone, references) consistently across the entire agent system — config files, persona definitions, scripts, skills, wiki pages, SSH key comments, cron job names, Telegram bot profile, log files, and bridge.db historical records",
+        "Load when the user says \"rename me to X\", \"personalize the assistant\", \"call me Y\", \"rename big boss\", or any persona-level identity change."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "yuanbao",
+      "name": "yuanbao",
+      "tagline": "Yuanbao (元宝) groups: @mention users, query info/members.",
+      "category": "AI & ML Operations",
+      "icon": "💬",
+      "what_it_does": [
+        "Loads as a Hermes skill at /home/adaops/.hermes/skills/yuanbao",
+        "Described: Yuanbao (元宝) groups: @mention users, query info/members.",
+        "Installs in under a minute via the Skill Hub app"
+      ],
+      "use_cases": [
+        "Yuanbao (元宝) groups: @mention users, query info/members."
+      ],
+      "deliverable": "Skill directory + auto-installed on next agent boot",
+      "who_its_for": "Anyone using Hermes / Skill Hub who needs this capability"
+    },
+    {
+      "id": "ada-llama-cpp-local",
+      "name": "llama.cpp Local Server (Self-Hosted GGUF)",
+      "tagline": "Real OpenAI-compatible API on your own hardware. 108 t/s on GPU, 17 t/s on CPU. $0/month after install.",
+      "category": "AI & ML Operations",
+      "icon": "🔒",
+      "what_it_does": [
+        "Installs llama.cpp (https://github.com/ggerganov/llama.cpp, 90k+ stars, MIT) — provides llama-server and llama-cli",
+        "Downloads a Qwen 2.5 GGUF model from HuggingFace (1.5B Q8_0 for CPU, 3B Q4_K_M for GPU)",
+        "Launches an OpenAI-compatible API server on http://localhost:11434/v1 — drop-in replacement for OpenAI",
+        "GPU tier: qwen2.5-3b-instruct-q4_k_m.gguf, 108.7 tok/s, 0.24s wall time on a discrete GPU, ~2 GB VRAM",
+        "CPU tier: qwen2.5-1.5b-instruct-q8_0.gguf, 16.7 tok/s, 1.1–1.5s wall time on a modern x86_64 CPU, ~2 GB RAM",
+        "One-command start: llama-server -m model.gguf -c 2048 --host 0.0.0.0 --port 11434",
+        "Writes a verified install report with hardware tier, model, tok/s, and a sample prompt + response"
+      ],
+      "use_cases": [
+        "Privacy-first AI for sensitive business data — nothing leaves your box",
+        "Run AI offline during travel, remote work, or in the field",
+        "Slash AI costs from $100/month to $0 after the one-time install",
+        "Use the MacBook M2 you already own — llama.cpp has first-class Metal support",
+        "Run on any 4 GB+ GPU, any modern CPU, any Apple Silicon Mac",
+        "Drop-in OpenAI-compatible endpoint for any tool that already talks to OpenAI"
+      ],
+      "deliverable": "llama-cpp-install.sh + download-model.sh + serve-llama-cpp.sh + verify-install.sh + .env.example + README",
+      "who_its_for": "Developers, privacy-conscious companies, hobbyists with a GPU, VPS owners, and anyone who refuses to send data to OpenAI"
+    }
+  ]
+}

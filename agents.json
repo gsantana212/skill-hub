@@ -1,0 +1,906 @@
+{
+  "version": "2026-06-27",
+  "updated": "2026-06-27",
+  "changelog": "Replaced AirLLM path with ada-llama-cpp-local (real llama.cpp + GGUF). Self-Hosted AI Pack now documents verified benchmarks: 108 t/s on GPU, 17 t/s on CPU, $0/month. Catalog: 11 agents, 8 packs, 49 skills.",
+  "merchant": {
+    "name": "Skill Hub",
+    "domain": "skillhub.shop",
+    "contact_email": "hello@skillhub.dev",
+    "crypto_email": "crypto@skillhub.dev"
+  },
+  "currency": "USD",
+  "tiers": {
+    "personal": {
+      "label": "Personal",
+      "price_usd": 19,
+      "tagline": "Solo use, 1 seat"
+    },
+    "team": {
+      "label": "Team",
+      "price_usd": 49,
+      "tagline": "Up to 5 seats, shared workspace"
+    },
+    "enterprise": {
+      "label": "Enterprise",
+      "price_usd": 149,
+      "tagline": "Unlimited seats, priority support, white-label"
+    }
+  },
+  "bundle_discounts": {
+    "2_agents": {
+      "qty_min": 2,
+      "qty_max": 2,
+      "discount_pct": 15,
+      "label": "Bundle 2 \u2014 save 15%"
+    },
+    "3_plus": {
+      "qty_min": 3,
+      "qty_max": 99,
+      "discount_pct": 25,
+      "label": "Bundle 3+ \u2014 save 25%"
+    }
+  },
+  "skill_packs": [
+    {
+      "sku": "operator-starter",
+      "name": "Operator Starter Pack",
+      "tagline": "Fresh box \u2192 running agent in 10 minutes.",
+      "price_usd": 12,
+      "skills_included": [
+        "ada-replication",
+        "ada-blank-slate",
+        "ada-audit-pdf-build",
+        "ada-local-vault",
+        "mesh-bridge-sync",
+        "gdrive-backup-rclone",
+        "lan-gui-access",
+        "uptime-monitor",
+        "secret-detector",
+        "data-profiler"
+      ],
+      "features": [
+        "Provision a new box in 10 minutes (script + post-install verification)",
+        "Replicate a fully-loaded agent to a remote machine",
+        "Sync skills and memory across multiple boxes",
+        "Encrypted, automated off-site backups to Google Drive",
+        "Local encrypted vault for API keys and notes",
+        "Generate branded PDFs from raw data",
+        "LAN-only web UI access for the agent's dashboard",
+        "Human-speed browser for sites without an API"
+      ],
+      "use_cases": [
+        "You're setting up your first agent on a new machine and want it identical to a friend's",
+        "You run 2+ boxes and want them to stay in sync overnight",
+        "You don't want a disk crash to lose months of agent memory"
+      ],
+      "deliverable": "8 skills \u00b7 install scripts \u00b7 restore playbook",
+      "who_its_for": "Anyone running more than one machine"
+    },
+    {
+      "sku": "money-and-income",
+      "name": "Money & Income Toolkit",
+      "tagline": "Pick a paid idea, ship it, get paid every month.",
+      "price_usd": 19,
+      "skills_included": [
+        "mrr-project-shaping",
+        "launch-revenue-operator",
+        "tx-classify",
+        "anomaly-spotter",
+        "budget-forecast",
+        "invoice-ocr",
+        "expense-report",
+        "stripe-reconcile",
+        "self-improving-agent",
+        "copy-editor"
+      ],
+      "features": [
+        "3-question framework to pick a paid niche (no fluff)",
+        "7-day launch checklist: page, payments, first customer",
+        "90-second daily shipping cadence tracker",
+        "MRR / churn / net digest every Friday to your inbox",
+        "Agent self-review loop: weekly prompt edits with diffs",
+        "LoRA fine-tune pipeline for a 7B model in your voice",
+        "Multi-agent team coordination with 90s status cadence",
+        "Branded PDF reports for investors and customers"
+      ],
+      "use_cases": [
+        "You're stuck between 3 ideas and need to commit this week",
+        "You have one paying customer and want to keep them and add 5 more",
+        "You want a model that writes like you, not like a chatbot"
+      ],
+      "deliverable": "8 skills \u00b7 prompt flow \u00b7 email templates \u00b7 training pipeline",
+      "who_its_for": "Solo founders and indie hackers under $5k MRR"
+    },
+    {
+      "sku": "messaging-and-setup",
+      "name": "Messaging & Setup Helper",
+      "tagline": "Reach the agent anywhere. Fix the bugs that keep you up at 3 AM.",
+      "price_usd": 19,
+      "skills_included": [
+        "multi-channel-comms",
+        "telegram-delivery-debugging",
+        "googlechat-comms",
+        "discord-bot",
+        "slack-summary",
+        "matrix-bridge",
+        "email-auto-reply",
+        "ada-replication",
+        "ada-blank-slate",
+        "ticket-triage"
+      ],
+      "features": [
+        "Bridge to Telegram, Discord, WhatsApp, Matrix \u2014 one config",
+        "Diagnose and fix Telegram delivery delays (5-min-late bug)",
+        "Google Chat spaces and DMs with thread-aware context",
+        "Fresh-box bring-up to running agent in 10 minutes",
+        "Replicate the agent to a second device in one command",
+        "Encrypted vault for channel bot tokens",
+        "LAN-only web UI access \u2014 no public exposure",
+        "Agent runtime with profile-aware memory"
+      ],
+      "use_cases": [
+        "You want the agent reachable on Telegram, Discord, and Google Chat at once",
+        "Your Telegram bot is delivering messages 5 minutes late and you can't figure out why",
+        "You need to onboard a team that uses Google Workspace"
+      ],
+      "deliverable": "8 skills \u00b7 bridge daemon \u00b7 watchdog \u00b7 runbook",
+      "who_its_for": "Anyone who wants the agent reachable on the apps they already use"
+    },
+    {
+      "sku": "creators-toolkit",
+      "name": "Creator's Toolkit",
+      "tagline": "Make the visuals, music, and diagrams for your next launch \u2014 in a day.",
+      "price_usd": 15,
+      "skills_included": [
+        "comfyui",
+        "excalidraw",
+        "claude-design",
+        "songwriting-and-ai-music",
+        "manim-video",
+        "baoyu-infographic",
+        "image-gen",
+        "video-storyboard",
+        "podcast-script",
+        "lyric-writer",
+        "slide-deck",
+        "brand-style-extract"
+      ],
+      "features": [
+        "Local Stable Diffusion with reproducible, versioned pipelines",
+        "Hand-drawn diagrams from plain English outlines",
+        "On-brand UI/UX mocks for landing pages and settings screens",
+        "Original song lyrics + chord progression + reference audio",
+        "Animated explainer videos from a script (Manim)",
+        "Branded multi-panel infographics for blog posts and decks",
+        "Outlined research briefs with citations and exports",
+        "Branded PDF reports for stakeholders"
+      ],
+      "use_cases": [
+        "You need a hero image, a system diagram, and an explainer video for a launch \u2014 in one day",
+        "You're writing a blog post and want an on-brand diagram without opening Figma",
+        "You want a reference track to send to a vocalist for a jingle"
+      ],
+      "deliverable": "8 skills \u00b7 CLI wrappers \u00b7 saved workflow templates",
+      "who_its_for": "Solo creators and indie hackers shipping v1 with no design budget"
+    },
+    {
+      "sku": "devops-infrastructure",
+      "name": "DevOps & Infrastructure",
+      "tagline": "Self-host your agent fleet like a real platform team \u2014 without becoming one.",
+      "price_usd": 24,
+      "skills_included": [
+        "proxmox-vm-mesh",
+        "proxmox-lxc-gpu-inference",
+        "mesh-bridge-sync",
+        "gdrive-backup-rclone",
+        "lan-gui-access",
+        "docker-build",
+        "k8s-manifest",
+        "terraform-plan",
+        "ansible-playbook",
+        "uptime-monitor",
+        "ci-pipeline",
+        "blue-green-deploy"
+      ],
+      "features": [
+        "Proxmox VM fleet from a YAML spec (CPU/RAM/disk/network)",
+        "LXC + GPU passthrough for local LLM inference (llama.cpp / vLLM)",
+        "Cross-box mesh sync with CRDT-conflict-free merges",
+        "Encrypted off-site backups to Google Drive (rclone)",
+        "Fresh-box bring-up script with post-install verification",
+        "LAN-only reverse proxy for the agent's web UI",
+        "Replicate a fully-loaded agent to a new box in one command",
+        "Encrypted secrets vault with per-secret access logging",
+        "Daily smoke-test of your endpoints with the dogfood harness",
+        "Agent runtime with profile-aware memory"
+      ],
+      "use_cases": [
+        "You want a 5-VM dev fleet in 30 minutes, not a weekend",
+        "You're running a 7B model on a home GPU rig and need it portable",
+        "You need off-site backups that survive a disk crash and are encrypted"
+      ],
+      "deliverable": "10 skills \u00b7 fleet YAMLs \u00b7 build scripts \u00b7 restore playbook",
+      "who_its_for": "Home-lab operators and small-team platform owners on Proxmox"
+    },
+    {
+      "sku": "ai-ml-power-pack",
+      "name": "AI/ML Power Pack",
+      "tagline": "Run, evaluate, and ship models \u2014 local-first, with real telemetry.",
+      "price_usd": 29,
+      "skills_included": [
+        "hermes-agent",
+        "self-improving-agent",
+        "personalized-llm-finetune",
+        "tandem-work",
+        "dataset-prep",
+        "model-eval",
+        "hyperparam-search",
+        "training-recipe",
+        "weights-and-biases",
+        "ada-llama-cpp-local"
+      ],
+      "features": [
+        "GPU inference container with llama.cpp / vLLM",
+        "Agent runtime with profile-aware memory",
+        "Self-improving loop: weekly prompt edits with diffs",
+        "QLoRA fine-tune pipeline for a 7B model on one 24GB GPU",
+        "Multi-agent team coordination",
+        "Weights & Biases tracking with sweeps and reports",
+        "PR review with security smell detection",
+        "Multi-PR workflow with auto-merge and CI summaries"
+      ],
+      "use_cases": [
+        "You want a local model server that other tools can hit like OpenAI",
+        "You're fine-tuning a model and need real eval results, not vibes",
+        "You want a weekly diff of how your agent's quality is trending"
+      ],
+      "deliverable": "8 skills \u00b7 inference configs \u00b7 eval templates \u00b7 training pipeline",
+      "who_its_for": "Practitioners running local LLMs and shipping model-backed products"
+    },
+    {
+      "sku": "the-full-vault",
+      "name": "The Full Vault",
+      "tagline": "Every skill, every pack, every future update \u2014 for life.",
+      "price_usd": 29,
+      "skills_included": [
+        "ada-audit-pdf-build",
+        "ada-backup-automator",
+        "ada-blank-slate",
+        "ada-browser",
+        "ada-llama-cpp-local",
+        "ada-local-vault",
+        "ada-replication",
+        "alert-router",
+        "anomaly-spotter",
+        "ansible-playbook",
+        "arxiv-fetcher",
+        "baoyu-infographic",
+        "blog-drafter",
+        "blue-green-deploy",
+        "bookmark-tagger",
+        "brand-style-extract",
+        "budget-forecast",
+        "calendar-scheduler",
+        "chart-builder",
+        "ci-pipeline",
+        "citation-lookup",
+        "claude-design",
+        "code-metrics",
+        "code-search",
+        "comfyui",
+        "competitive-intel",
+        "copy-editor",
+        "csat-survey",
+        "csv-json-transform",
+        "data-profiler",
+        "dataframe-ops",
+        "dataset-prep",
+        "dep-cve-check",
+        "dependency-updater",
+        "discord-bot",
+        "discord-mod",
+        "doc-page-writer",
+        "docker-build",
+        "docstring-writer",
+        "dogfood",
+        "duckdb-query",
+        "email-auto-reply",
+        "email-triage",
+        "escalation-router",
+        "etl-runner",
+        "excalidraw",
+        "expense-report",
+        "faq-matcher",
+        "focus-mode",
+        "gdrive-backup-rclone",
+        "github-code-review",
+        "github-issues",
+        "github-pr-workflow",
+        "glossary-build",
+        "googlechat-comms",
+        "gpu-monitor",
+        "headline-generator",
+        "health-check",
+        "hermes-agent",
+        "hyperparam-search",
+        "image-gen",
+        "inbox-zero",
+        "invoice-ocr",
+        "issue-triage",
+        "k8s-manifest",
+        "lan-gui-access",
+        "launch-revenue-operator",
+        "lint-fixer",
+        "log-anomaly",
+        "log-search",
+        "lyric-writer",
+        "manim-video",
+        "market-scan",
+        "matrix-bridge",
+        "meeting-recap",
+        "mesh-bridge-sync",
+        "migration-assistant",
+        "model-eval",
+        "model-registry-push",
+        "mrr-project-shaping",
+        "multi-channel-comms",
+        "newsletter-curator",
+        "note-taker",
+        "notion-sync",
+        "obsidian-sync",
+        "paper-summarise",
+        "pdf-rag",
+        "personalized-llm-finetune",
+        "phishing-check",
+        "podcast-script",
+        "pr-review",
+        "proxmox-lxc-gpu-inference",
+        "proxmox-vm-mesh",
+        "refactor-helper",
+        "refund-flow",
+        "release-notes",
+        "reminder-setter",
+        "repo-digest",
+        "research-paper-writing",
+        "schema-migrate",
+        "secret-detector",
+        "security-scan",
+        "self-improving-agent",
+        "sentiment-detector",
+        "slack-summary",
+        "slide-deck",
+        "snippet-lookup",
+        "songwriting-and-ai-music",
+        "sql-generator",
+        "ssh-audit",
+        "stripe-reconcile",
+        "summariser",
+        "tandem-work",
+        "telegram-delivery-debugging",
+        "terraform-plan",
+        "test-generator",
+        "thread-summarise",
+        "ticket-summariser",
+        "ticket-triage",
+        "todo-manager",
+        "training-recipe",
+        "tweet-thread",
+        "tx-classify",
+        "uptime-monitor",
+        "video-storyboard",
+        "vuln-scan",
+        "web-rag",
+        "web-search",
+        "weights-and-biases"
+      ],
+      "features": [
+        "Every skill in the 6 themed packs (31 today, growing)",
+        "Every new skill we release, automatically yours",
+        "Priority email support \u2014 we answer in a day",
+        "Cancel nothing \u2014 pay once, own forever",
+        "Source-of-truth downloads for every version"
+      ],
+      "use_cases": [
+        "You want the whole catalog now and don't want to think about which pack to pick",
+        "You want a single purchase that covers every future skill we ship",
+        "You run an agency or studio and want unlimited internal use"
+      ],
+      "deliverable": "All 30 skills \u00b7 every future skill free \u00b7 priority support",
+      "who_its_for": "Anyone who wants the whole library without thinking about it"
+    },
+    {
+      "sku": "self-hosted-ai-pack",
+      "name": "Self-Hosted AI Pack",
+      "tagline": "Real OpenAI-compatible AI on YOUR hardware. 108 t/s on GPU, 17 t/s on CPU. $0/month, forever.",
+      "price_usd": 49,
+      "skills_included": [
+        "self-improving-agent",
+        "personalized-llm-finetune",
+        "ada-llama-cpp-local",
+        "ada-blank-slate",
+        "ada-backup-automator",
+        "proxmox-lxc-gpu-inference",
+        "mesh-bridge-sync",
+        "hermes-agent"
+      ],
+      "features": [
+        "Installs llama.cpp (90k+\u2605, MIT) and downloads a Qwen 2.5 GGUF from HuggingFace",
+        "OpenAI-compatible API on http://localhost:11434/v1 \u2014 drop-in replacement, no code changes",
+        "VERIFIED BENCHMARKS: 108.7 tok/s on GPU (qwen2.5-3b-instruct-q4_k_m.gguf, 0.24s wall time)",
+        "VERIFIED BENCHMARKS: 16.7 tok/s on CPU (qwen2.5-1.5b-instruct-q8_0.gguf, 1.1\u20131.5s wall time)",
+        "One-command start: llama-server -m model.gguf -c 2048 --host 0.0.0.0 --port 11434",
+        "Works on any 4 GB+ GPU, any modern CPU, any Apple Silicon Mac",
+        "Verified install report with hardware tier, model, tok/s, and a real sample response"
+      ],
+      "use_cases": [
+        "Privacy-first AI for sensitive business data \u2014 nothing ever leaves your box",
+        "Run AI offline during travel, remote work, or in the field",
+        "Slash AI costs from $100/month to $0 after the one-time install",
+        "Use the MacBook M2 you already own \u2014 llama.cpp has first-class Metal support",
+        "Chat with confidential docs without uploading them anywhere"
+      ],
+      "deliverable": "4 skills \u00b7 llama-cpp-install.sh \u00b7 download-model.sh \u00b7 serve-llama-cpp.sh \u00b7 verify-install.sh \u00b7 install report",
+      "who_its_for": "Developers, privacy-conscious companies, hobbyists with a GPU, VPS owners, and anyone who refuses to send data to OpenAI"
+    }
+  ],
+  "agents": [
+    {
+      "sku": "crypto-trading-agent",
+      "name": "Crypto Trading Agent",
+      "tagline": "24/7 portfolio monitor with risk-aware signals.",
+      "description": "Tracks exchange accounts (Kraken, Coinbase, Binance) via read-only API keys, applies configurable rules, and posts signals to Telegram or Discord. Includes backtesting, position-sizing, and drawdown guards. Skills-only \u2014 bring your own strategy and persona.",
+      "category": "Finance",
+      "icon": "\ud83d\udcc8",
+      "thumbnail_color": "#f7931a",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=crypto-trading-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=crypto-trading-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=crypto-trading-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "crypto-trading-personal-19",
+        "team": "crypto-trading-team-49",
+        "enterprise": "crypto-trading-enterprise-149"
+      },
+      "features": [
+        "Read-only exchange API (Kraken, Coinbase, Binance)",
+        "Custom rule engine \u2014 entry/exit/stop",
+        "Telegram + Discord signal dispatch",
+        "Drawdown guard + position sizing",
+        "Daily P/L digest to email"
+      ],
+      "skills_included": [
+        "tx-classify",
+        "anomaly-spotter",
+        "budget-forecast",
+        "stripe-reconcile",
+        "multi-channel-comms",
+        "model-eval"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "customer-support-agent",
+      "name": "Customer Support Agent",
+      "tagline": "Tier-1 support that knows your docs.",
+      "description": "Embeddable chat widget + email responder trained on a configured knowledge base. Auto-routes to humans on edge cases. Multi-language out of the box. Skills-only \u2014 fully neutral, no pre-set tone or persona.",
+      "category": "Support",
+      "icon": "\ud83d\udcac",
+      "thumbnail_color": "#5b8cff",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=customer-support-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=customer-support-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=customer-support-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "customer-support-personal-19",
+        "team": "customer-support-team-49",
+        "enterprise": "customer-support-enterprise-149"
+      },
+      "features": [
+        "Knowledge-base grounded answers",
+        "Multi-language (EN, ES, FR, DE, JP)",
+        "Edge-case routing to humans",
+        "Email + chat + Slack support",
+        "Sentiment + escalation tracking"
+      ],
+      "skills_included": [
+        "ticket-triage",
+        "faq-matcher",
+        "sentiment-detector",
+        "escalation-router",
+        "csat-survey",
+        "multi-channel-comms",
+        "pdf-rag"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "social-media-manager-agent",
+      "name": "Social Media Manager Agent",
+      "tagline": "Schedule, post, reply, and report \u2014 across 8 networks.",
+      "description": "Connects to Twitter/X, LinkedIn, Mastodon, Bluesky, Threads, Facebook, Instagram, and YouTube. Schedules posts from a content calendar, replies to mentions, and ships weekly analytics reports. Skills-only \u2014 user-defined voice and brand voice.",
+      "category": "Marketing",
+      "icon": "\ud83d\udcf1",
+      "thumbnail_color": "#7c5cff",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=social-media-manager-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=social-media-manager-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=social-media-manager-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "social-media-personal-19",
+        "team": "social-media-team-49",
+        "enterprise": "social-media-enterprise-149"
+      },
+      "features": [
+        "8 networks (X, LinkedIn, Mastodon, Bluesky, Threads, FB, IG, YT)",
+        "Content calendar with approval flow",
+        "Auto-reply to mentions / DMs",
+        "Weekly analytics report (PDF + email)",
+        "Hashtag + trend suggestion"
+      ],
+      "skills_included": [
+        "multi-channel-comms",
+        "discord-bot",
+        "slack-summary",
+        "tweet-thread",
+        "copy-editor",
+        "image-gen",
+        "brand-style-extract"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "code-review-agent",
+      "name": "Code Review Agent",
+      "tagline": "PRs reviewed in under 90 seconds. Catches what humans miss.",
+      "description": "Watches GitHub/GitLab repos. On every PR: runs static analysis, checks for security smells, posts diff-aware review comments. Learns the configured team style. Skills-only \u2014 no embedded reviewer persona, fully configurable.",
+      "category": "Engineering",
+      "icon": "\ud83d\udd0d",
+      "thumbnail_color": "#16a37a",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=code-review-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=code-review-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=code-review-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "code-review-personal-19",
+        "team": "code-review-team-49",
+        "enterprise": "code-review-enterprise-149"
+      },
+      "features": [
+        "GitHub + GitLab + Bitbucket PR review",
+        "Security smell detection (SQLi, XSS, secrets)",
+        "Style-aware inline comments",
+        "Auto-approve green PRs, alert on red",
+        "Slack/Teams notification digest"
+      ],
+      "skills_included": [
+        "github-pr-workflow",
+        "github-code-review",
+        "pr-review",
+        "test-generator",
+        "refactor-helper",
+        "lint-fixer",
+        "security-scan"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "email-triage-agent",
+      "name": "Email Triage Agent",
+      "tagline": "Inbox zero, automatically. Keeps what matters, drafts the rest.",
+      "description": "Connects to Gmail/Outlook via OAuth. Classifies incoming email, drafts replies in the configured voice, surfaces urgent threads, and archives noise. Human stays in control \u2014 agent suggests, user approves. Skills-only \u2014 no embedded persona.",
+      "category": "Productivity",
+      "icon": "\ud83d\udce7",
+      "thumbnail_color": "#ff6b6b",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=email-triage-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=email-triage-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=email-triage-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "email-triage-personal-19",
+        "team": "email-triage-team-49",
+        "enterprise": "email-triage-enterprise-149"
+      },
+      "features": [
+        "Gmail + Outlook + Fastmail OAuth",
+        "Priority inbox with reasoning shown",
+        "Reply drafts in the configured voice",
+        "Unsubscribe automation (CAN-SPAM safe)",
+        "Daily digest: 1 line, the only line that matters"
+      ],
+      "skills_included": [
+        "calendar-scheduler",
+        "email-triage",
+        "todo-manager",
+        "inbox-zero",
+        "multi-channel-comms",
+        "email-auto-reply",
+        "hermes-agent"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "research-agent",
+      "name": "Research Agent",
+      "tagline": "Web search \u2192 cited briefing in 5 minutes.",
+      "description": "Plans a research question, runs multi-source searches, deduplicates findings, and writes a cited brief in the configured format. Skills-only \u2014 no embedded editorial voice, user controls style and length.",
+      "category": "Research",
+      "icon": "\ud83d\udd2c",
+      "thumbnail_color": "#0ea5e9",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=research-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=research-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=research-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "research-personal-19",
+        "team": "research-team-49",
+        "enterprise": "research-enterprise-149"
+      },
+      "features": [
+        "Multi-source web search with deduplication",
+        "Inline citations pulled from a reference manager",
+        "Briefings in user-configured format (1-pager, memo, paper)",
+        "Export to Markdown, PDF, or BibTeX",
+        "Topic digest on a cron schedule"
+      ],
+      "skills_included": [
+        "research-paper-writing",
+        "web-search",
+        "arxiv-fetcher",
+        "paper-summarise",
+        "competitive-intel",
+        "citation-lookup",
+        "pdf-rag"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "content-creator-agent",
+      "name": "Content Creator Agent",
+      "tagline": "Image, video, audio, and design \u2014 from a single brief.",
+      "description": "Reads a launch brief, then produces a hero image, a diagram, a short video, and a reference audio in a chosen style. Skills-only \u2014 no embedded voice, user defines brand and tone.",
+      "category": "Creative",
+      "icon": "\u270d\ufe0f",
+      "thumbnail_color": "#ec4899",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=content-creator-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=content-creator-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=content-creator-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "content-personal-19",
+        "team": "content-team-49",
+        "enterprise": "content-enterprise-149"
+      },
+      "features": [
+        "Hero image in on-brand style (ComfyUI pipeline)",
+        "Hand-drawn diagram from outline (Excalidraw)",
+        "Short explainer video from script (Manim)",
+        "Original song / jingle with reference audio (songwriting)",
+        "Brand-aligned UI/UX mocks (Claude Design)"
+      ],
+      "skills_included": [
+        "blog-drafter",
+        "comfyui",
+        "excalidraw",
+        "songwriting-and-ai-music",
+        "manim-video",
+        "baoyu-infographic",
+        "podcast-script",
+        "slide-deck"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "devops-agent",
+      "name": "DevOps Agent",
+      "tagline": "Provisions, syncs, and backs up your fleet on a schedule.",
+      "description": "Manages a fleet of agent boxes: bring-up new VMs, replicate the master, sync state across the mesh, and back up to encrypted off-site storage. Skills-only \u2014 user-defined policies and approval rules.",
+      "category": "DevOps",
+      "icon": "\ud83d\udee0\ufe0f",
+      "thumbnail_color": "#f97316",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=devops-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=devops-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=devops-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "devops-personal-19",
+        "team": "devops-team-49",
+        "enterprise": "devops-enterprise-149"
+      },
+      "features": [
+        "Provision Proxmox VMs from a YAML spec",
+        "Replicate a master agent to a new box",
+        "Cross-box mesh sync with conflict-free merges",
+        "Encrypted off-site backups (rclone + Google Drive)",
+        "Bring-up / teardown / status on a cron schedule"
+      ],
+      "skills_included": [
+        "proxmox-vm-mesh",
+        "proxmox-lxc-gpu-inference",
+        "mesh-bridge-sync",
+        "docker-build",
+        "k8s-manifest",
+        "terraform-plan",
+        "uptime-monitor"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "data-analyst-agent",
+      "name": "Data Analyst Agent",
+      "tagline": "Notebook-first data analysis with experiment tracking.",
+      "description": "Runs a live Jupyter kernel with experiment tracking on every run. Pulls from CSV/JSON/SQL, generates charts, and ships a notebook with reproducible results. Skills-only \u2014 no embedded analyst voice, user defines output style.",
+      "category": "Data",
+      "icon": "\ud83d\udcca",
+      "thumbnail_color": "#22c55e",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=data-analyst-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=data-analyst-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=data-analyst-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "data-personal-19",
+        "team": "data-team-49",
+        "enterprise": "data-enterprise-149"
+      },
+      "features": [
+        "Live Jupyter kernel with shared state across turns",
+        "Per-run experiment tracking on Weights & Biases",
+        "Charts and tables inline in chat",
+        "Reproducible notebook export with seeds and versions",
+        "CSV / JSON / SQL ingestion with schema detection"
+      ],
+      "skills_included": [
+        "weights-and-biases",
+        "sql-generator",
+        "chart-builder",
+        "csv-json-transform",
+        "dataframe-ops",
+        "data-profiler",
+        "duckdb-query"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "ai-trainer-agent",
+      "name": "AI Trainer Agent",
+      "tagline": "Fine-tune, evaluate, and serve your own model.",
+      "description": "End-to-end model training: data prep, QLoRA fine-tune, eval against a harness, and a local serving endpoint. Skills-only \u2014 no embedded data, user supplies the corpus and the target metrics.",
+      "category": "AI/ML",
+      "icon": "\ud83c\udf93",
+      "thumbnail_color": "#06b6d4",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=ai-trainer-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=ai-trainer-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=ai-trainer-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "trainer-personal-19",
+        "team": "trainer-team-49",
+        "enterprise": "trainer-enterprise-149"
+      },
+      "features": [
+        "QLoRA fine-tune pipeline for 7B/13B on one 24GB GPU",
+        "Agent self-improvement loop with weekly diffs",
+        "Multi-agent team coordination",
+        "Weights & Biases tracking with sweeps and reports",
+        "GPU inference container (LXC + llama.cpp / vLLM)"
+      ],
+      "skills_included": [
+        "personalized-llm-finetune",
+        "dataset-prep",
+        "model-eval",
+        "hyperparam-search",
+        "model-registry-push",
+        "gpu-monitor",
+        "training-recipe",
+        "hermes-agent"
+      ],
+      "version": "2026-06-27"
+    },
+    {
+      "sku": "private-ai-assistant-agent",
+      "name": "Private AI Assistant",
+      "tagline": "Your own ChatGPT, on your hardware, private.",
+      "description": "A self-hosted AI assistant that runs entirely on the user's box \u2014 no data leaves the machine, no monthly API bill, and real measured throughput: 108.7 tok/s on GPU, 16.7 tok/s on CPU. Backed by llama.cpp + Qwen 2.5 GGUF (1.5B Q8 for CPU, 3B Q4_K_M for GPU), with first-class Apple Silicon / Metal support. Exposes an OpenAI-compatible endpoint so any existing tool (desktop app, web UI, curl, custom script) drops in unchanged. Skills-only \u2014 fully blank, user defines persona and prompts.",
+      "category": "AI/ML",
+      "icon": "\ud83d\udd12",
+      "thumbnail_color": "#0f766e",
+      "tier_pricing": {
+        "personal": 19,
+        "team": 49,
+        "enterprise": 149
+      },
+      "stripe_links": {
+        "personal": "/checkout-agent.html?sku=private-ai-assistant-agent&tier=personal",
+        "team": "/checkout-agent.html?sku=private-ai-assistant-agent&tier=team",
+        "enterprise": "/checkout-agent.html?sku=private-ai-assistant-agent&tier=enterprise"
+      },
+      "paypal_items": {
+        "personal": "private-ai-personal-19",
+        "team": "private-ai-team-49",
+        "enterprise": "private-ai-enterprise-149"
+      },
+      "features": [
+        "Runs entirely on your hardware (4GB+ GPU, any modern CPU, Apple Silicon)",
+        "No data ever leaves your machine \u2014 zero telemetry",
+        "Verified 108.7 tok/s on GPU, 16.7 tok/s on CPU \u2014 $0/month after install",
+        "OpenAI-compatible API on http://localhost:11434/v1",
+        "Encrypted backups of conversations and settings",
+        "Drop-in replacement for OpenAI in any existing tool"
+      ],
+      "skills_included": [
+        "hermes-agent",
+        "ada-llama-cpp-local",
+        "ada-backup-automator",
+        "multi-channel-comms",
+        "calendar-scheduler",
+        "note-taker",
+        "self-improving-agent"
+      ],
+      "use_cases": [
+        "Confidential docs \u2014 chat with proprietary material without uploading",
+        "Offline AI \u2014 works on a plane, in the field, or behind a strict firewall",
+        "Zero monthly cost \u2014 replace your $100/month OpenAI bill after one install"
+      ],
+      "version": "2026-06-27"
+    }
+  ]
+}
