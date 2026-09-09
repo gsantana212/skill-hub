@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
-  "updated": "2026-06-23",
-  "changelog": "Replaced ada-airllm-installer with ada-llama-cpp-local (real llama.cpp + GGUF path, verified 108 t/s on GPU, 17 t/s on CPU). Catalog now 49 skills, 8 packs, 11 agents.",
+  "version": "1.2.0",
+  "updated": "2026-09-09",
+  "changelog": "Added 'Productivity' to the category registry (now 10 categories) to align with skill entries that already used it. Bumped agents.json to 2026-09-09.",
   "merchant": {
     "name": "Skill Hub",
     "domain": "skillhub.shop"
@@ -18,7 +18,8 @@
     "AI & ML Operations",
     "Creative & Design",
     "Research & Writing",
-    "Data & Analytics"
+    "Data & Analytics",
+    "Productivity"
   ],
   "skills": [
     {

@@ -22,7 +22,7 @@ Everything is data-driven — edit the JSON, the HTML re-renders.
 |---|---|---|
 | `index.html` | Full marketplace landing page | Single file, no build step |
 | `agents.json` | Pre-made agent registry | Current `version: 2026-06-27`, 11 agents, 4 skill packs |
-| `skills.json` | Individual skill registry | `version: 1.1.0`, **49 skills across 9 categories** |
+| `skills.json` | Individual skill registry | `version: 1.2.0`, **49 skills across 10 categories** |
 | `INTEGRATION.md` | Wire Lemonsqueezy or Stripe Payment Links | Step-by-step |
 | `skills/` | Skill-internal docs | `competitor-site-research.md`, `diy-kit-ecommerce-template.md` (live in this repo, not just meta) |
 | `case-studies/` | Client case studies | Includes Pretty Stoned / SMILE GEMS |
@@ -50,7 +50,7 @@ Everything is data-driven — edit the JSON, the HTML re-renders.
 - Currency: USD; prices are integers (no decimals in the JSON — Stripe handles the cents).
 - Slugs: `kebab-case`; must be unique across `agents.json` and `skills.json`.
 - Dates: ISO-8601 (`YYYY-MM-DD`).
-- Skills index category names must match the 9 registered categories in `skills.json`.
+- Skills index category names must match the 10 registered categories in `skills.json`.
 
 ## Build / serve
 
@@ -63,7 +63,7 @@ python3 -m http.server 8000
 ## Status snapshot (2026-08-31)
 
 - 4 skill packs: operator, money & income, comms, vault
-- 11 pre-made agents, 49 individual skills, 9 categories
+- 11 pre-made agents, 49 individual skills, 10 categories
 - Payment provider: Lemonsqueezy (recommended) — first dollar target < 30 min after
   Lemonsqueezy account creation
 - Mirror: `gsantana212.github.io/skill-hub/` (legacy)

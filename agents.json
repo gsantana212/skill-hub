@@ -1,7 +1,7 @@
 {
-  "version": "2026-06-27",
-  "updated": "2026-06-27",
-  "changelog": "Replaced AirLLM path with ada-llama-cpp-local (real llama.cpp + GGUF). Self-Hosted AI Pack now documents verified benchmarks: 108 t/s on GPU, 17 t/s on CPU, $0/month. Catalog: 11 agents, 8 packs, 49 skills.",
+  "version": "2026-09-09",
+  "updated": "2026-09-09",
+  "changelog": "Sync to 2026-09-09: skills.json registry bumped to 1.2.0 (added 'Productivity' category, now 10 categories) to align with skill/agent entries.",
   "merchant": {
     "name": "Skill Hub",
     "domain": "skillhub.shop",
